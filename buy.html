@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Buy Property in Surat – Complete Buyer Guide | SuratHomes</title>
+  <meta name="description" content="Complete guide to buying property in Surat. Learn about home loans, stamp duty, legal process, EMI calculation, and RERA registration for residential buyers.">
+  <meta property="og:title" content="Buy Property in Surat – Step-by-Step Home Buyer's Guide | SuratHomes">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-semibold flex items-center gap-1 rounded-md" style="color:#C8A96A">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:bg-gray-50" style="color:#C8A96A"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Your Complete Resource</span>
+      <h1 class="page-hero-title">Surat Home<br>Buyer's Guide</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">From property search to registry — everything a first-time or repeat buyer needs to know before purchasing in Surat, Gujarat.</p>
+    </div>
+  </section>
+
+  <!-- STEP BY STEP PROCESS -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">The Journey</span>
+      <h2 class="text-3xl md:text-4xl font-serif font-bold text-navy-900 mt-2">Step-by-Step Buying Process</h2>
+    </div>
+
+    <div class="relative">
+      <!-- Vertical line -->
+      <div class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 h-full w-0.5 bg-gradient-to-b from-gold-500 to-emerald-500 opacity-30"></div>
+      
+      <div class="space-y-12">
+        <!-- Step 1 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:text-right md:pr-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3 md:justify-end">
+                <div class="w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-950 font-bold text-sm">1</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Set Your Budget</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Determine your total purchase budget factoring in down payment (typically 20%), stamp duty (4.9% in Gujarat), registration charges, and GST on under-construction flats. A financial advisor can help structure your investment correctly.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-8 h-8 bg-gold-500 rounded-full items-center justify-center text-navy-950 font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">1</div>
+          <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+          <div class="hidden md:flex w-8 h-8 bg-navy-900 rounded-full items-center justify-center text-white font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">2</div>
+          <div class="md:w-1/2 md:pl-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3">
+                <div class="w-10 h-10 bg-navy-900 rounded-full flex items-center justify-center text-white font-bold text-sm md:hidden">2</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Search & Shortlist</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Use SuratHomes to filter by location, BHK, budget, and status. Shortlist 3–5 properties and verify each listing's RERA number on the Gujarat RERA portal before scheduling visits.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:text-right md:pr-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3 md:justify-end">
+                <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm">3</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Legal Due Diligence</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Verify the title deed, encumbrance certificate, property tax receipts, and occupancy certificate (OC). Confirm RERA registration is valid and that no pending liabilities exist on the property.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-8 h-8 bg-emerald-600 rounded-full items-center justify-center text-white font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">3</div>
+          <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+          <div class="hidden md:flex w-8 h-8 bg-gold-500 rounded-full items-center justify-center text-navy-950 font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">4</div>
+          <div class="md:w-1/2 md:pl-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3">
+                <div class="w-10 h-10 bg-gold-500 rounded-full flex items-center justify-center text-navy-950 font-bold text-sm md:hidden">4</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Negotiate & Agree</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Negotiate the final price with the seller or builder. Sign a Memorandum of Understanding (MOU) and pay 5-10% token amount. Ensure all verbal promises are documented in the agreement.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:text-right md:pr-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3 md:justify-end">
+                <div class="w-10 h-10 bg-navy-900 rounded-full flex items-center justify-center text-white font-bold text-sm">5</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Secure Home Loan</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Apply for home loan sanction from banks (SBI, HDFC, ICICI offer best rates for Gujarat properties). Submit income proof, property documents, and get in-principal approval before finalizing payment schedule.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex w-8 h-8 bg-navy-900 rounded-full items-center justify-center text-white font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">5</div>
+          <div class="md:w-1/2 md:pl-12 hidden md:block"></div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="md:w-1/2 md:pr-12 hidden md:block"></div>
+          <div class="hidden md:flex w-8 h-8 bg-emerald-600 rounded-full items-center justify-center text-white font-bold text-sm shrink-0 mx-auto z-10 border-4 border-white shadow">6</div>
+          <div class="md:w-1/2 md:pl-12">
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <div class="flex items-center space-x-3 mb-3">
+                <div class="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:hidden">6</div>
+                <h3 class="text-lg font-serif font-bold text-navy-900">Registration & Handover</h3>
+              </div>
+              <p class="text-sm text-slate-600 leading-relaxed">Visit the sub-registrar office for the sale deed registration. Pay stamp duty and registration charges. Collect the original registered sale deed and take possession with a detailed inventory checklist.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE EMI CALCULATOR -->
+  <section class="py-16 bg-white border-y border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{
+      loanAmount: 40,
+      interestRate: 8.5,
+      tenureYears: 20,
+      get emiMonthly() {
+        const P = this.loanAmount * 100000;
+        const R = this.interestRate / 12 / 100;
+        const N = this.tenureYears * 12;
+        if (R === 0) return (P / N).toFixed(0);
+        const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+        return Math.round(emi).toLocaleString('en-IN');
+      },
+      get totalAmount() {
+        const P = this.loanAmount * 100000;
+        const R = this.interestRate / 12 / 100;
+        const N = this.tenureYears * 12;
+        if (R === 0) return P.toLocaleString('en-IN');
+        const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+        return Math.round(emi * N).toLocaleString('en-IN');
+      },
+      get totalInterest() {
+        const P = this.loanAmount * 100000;
+        const R = this.interestRate / 12 / 100;
+        const N = this.tenureYears * 12;
+        if (R === 0) return '0';
+        const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+        return Math.round(emi * N - P).toLocaleString('en-IN');
+      }
+    }">
+      <div class="text-center mb-10">
+        <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">Plan Your Finances</span>
+        <h2 class="text-3xl font-serif font-bold text-navy-900 mt-2">Home Loan EMI Calculator</h2>
+      </div>
+
+      <div class="bg-slate-50 rounded-2xl border border-slate-200 p-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <!-- Input side -->
+          <div class="space-y-8">
+            <!-- Loan Amount -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Loan Amount</label>
+                <span class="text-lg font-serif font-bold text-navy-900">₹<span x-text="loanAmount"></span> Lakhs</span>
+              </div>
+              <input type="range" min="5" max="500" step="5" x-model="loanAmount" class="w-full h-2 accent-gold-500 cursor-pointer rounded-full">
+              <div class="flex justify-between text-xs text-slate-400 mt-1"><span>₹5 L</span><span>₹500 L</span></div>
+            </div>
+
+            <!-- Interest Rate -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Interest Rate (p.a.)</label>
+                <span class="text-lg font-serif font-bold text-navy-900"><span x-text="interestRate"></span>%</span>
+              </div>
+              <input type="range" min="6" max="14" step="0.1" x-model="interestRate" class="w-full h-2 accent-gold-500 cursor-pointer rounded-full">
+              <div class="flex justify-between text-xs text-slate-400 mt-1"><span>6%</span><span>14%</span></div>
+            </div>
+
+            <!-- Loan Tenure -->
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Loan Tenure</label>
+                <span class="text-lg font-serif font-bold text-navy-900"><span x-text="tenureYears"></span> Years</span>
+              </div>
+              <input type="range" min="5" max="30" step="1" x-model="tenureYears" class="w-full h-2 accent-gold-500 cursor-pointer rounded-full">
+              <div class="flex justify-between text-xs text-slate-400 mt-1"><span>5 Yrs</span><span>30 Yrs</span></div>
+            </div>
+          </div>
+
+          <!-- Result side -->
+          <div class="bg-navy-900 rounded-xl text-white p-8 flex flex-col justify-center">
+            <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Monthly EMI</p>
+            <p class="text-4xl font-serif font-bold text-gold-400 mb-6">₹<span x-text="emiMonthly"></span></p>
+            <div class="space-y-3 border-t border-navy-800 pt-5 text-sm">
+              <div class="flex justify-between">
+                <span class="text-slate-400">Principal Amount</span>
+                <span class="font-bold">₹<span x-text="loanAmount"></span>L</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-slate-400">Total Interest</span>
+                <span class="font-bold text-amber-400">₹<span x-text="totalInterest"></span></span>
+              </div>
+              <div class="flex justify-between border-t border-navy-800 pt-3">
+                <span class="text-slate-300 font-semibold">Total Payment</span>
+                <span class="font-bold text-emerald-400">₹<span x-text="totalAmount"></span></span>
+              </div>
+            </div>
+            <a href="contact.html" class="mt-6 block text-center bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold py-3 rounded text-xs uppercase tracking-wider transition-colors">Get Home Loan Quote</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAMP DUTY TABLE -->
+  <section class="py-16 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10">
+      <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">Know Before You Sign</span>
+      <h2 class="text-3xl font-serif font-bold text-navy-900 mt-2">Stamp Duty & Registration in Gujarat</h2>
+    </div>
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <table class="w-full text-sm text-left">
+        <thead class="bg-navy-900 text-white">
+          <tr>
+            <th class="px-6 py-4 font-semibold uppercase tracking-wider text-xs">Category</th>
+            <th class="px-6 py-4 font-semibold uppercase tracking-wider text-xs">Stamp Duty</th>
+            <th class="px-6 py-4 font-semibold uppercase tracking-wider text-xs">Registration Fee</th>
+            <th class="px-6 py-4 font-semibold uppercase tracking-wider text-xs">Total Cost</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          <tr class="hover:bg-slate-50">
+            <td class="px-6 py-4 font-medium text-navy-900">Residential Property</td>
+            <td class="px-6 py-4 text-slate-600">4.9%</td>
+            <td class="px-6 py-4 text-slate-600">1%</td>
+            <td class="px-6 py-4 font-bold text-navy-900">5.9%</td>
+          </tr>
+          <tr class="hover:bg-slate-50">
+            <td class="px-6 py-4 font-medium text-navy-900">Commercial Property</td>
+            <td class="px-6 py-4 text-slate-600">4.9%</td>
+            <td class="px-6 py-4 text-slate-600">1%</td>
+            <td class="px-6 py-4 font-bold text-navy-900">5.9%</td>
+          </tr>
+          <tr class="hover:bg-slate-50">
+            <td class="px-6 py-4 font-medium text-navy-900">Agricultural Land</td>
+            <td class="px-6 py-4 text-slate-600">4.9%</td>
+            <td class="px-6 py-4 text-slate-600">1%</td>
+            <td class="px-6 py-4 font-bold text-navy-900">5.9%</td>
+          </tr>
+          <tr class="hover:bg-slate-50 bg-gold-500/5">
+            <td class="px-6 py-4 font-medium text-navy-900">Women Buyer Rebate</td>
+            <td class="px-6 py-4 text-emerald-600 font-bold">3.9% (-1%)</td>
+            <td class="px-6 py-4 text-slate-600">1%</td>
+            <td class="px-6 py-4 font-bold text-emerald-700">4.9%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-center text-xs text-slate-400 mt-4">Stamp duty rates as applicable in Gujarat. Subject to change per state government notification.</p>
+  </section>
+
+  <!-- LEGAL CHECKLIST -->
+  <section class="py-16 bg-navy-950 text-white px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-gold-500 font-semibold uppercase tracking-widest text-xs">Stay Protected</span>
+        <h2 class="text-3xl font-serif font-bold mt-2">Legal Due Diligence Checklist</h2>
+        <p class="text-slate-400 text-sm mt-3">Before you sign any agreement, ensure the following documents are verified:</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Title Deed Verification</p>
+            <p class="text-xs text-slate-400 mt-0.5">Confirm chain of ownership goes back at least 30 years without disputes.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Encumbrance Certificate</p>
+            <p class="text-xs text-slate-400 mt-0.5">Verify no pending mortgages, liens, or liabilities on the property.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">RERA Registration</p>
+            <p class="text-xs text-slate-400 mt-0.5">Check project RERA number on Gujarat RERA portal for authentic builder details.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Occupancy Certificate (OC)</p>
+            <p class="text-xs text-slate-400 mt-0.5">Required for ready-to-move-in properties to confirm the building is approved for habitation.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Property Tax Clearance</p>
+            <p class="text-xs text-slate-400 mt-0.5">Ensure all past property tax dues are fully cleared before completing the purchase.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Building Approval Plans</p>
+            <p class="text-xs text-slate-400 mt-0.5">Verify the building plan is sanctioned by the Surat Municipal Corporation (SMC).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="index.html" class="hover:text-gold-500">Home</a>
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="agents.html" class="hover:text-gold-500">Agents</a>
+        <a href="faq.html" class="hover:text-gold-500">FAQ</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

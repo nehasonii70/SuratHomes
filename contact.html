@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact SuratHomes – Property Inquiry & Schedule a Site Visit</title>
+  <meta name="description" content="Get in touch with SuratHomes. Submit a property inquiry, schedule a site visit, reach us on WhatsApp, or visit our Piplod, Surat office. Open Mon–Sat, 9AM–8PM.">
+  <meta property="og:title" content="Contact SuratHomes – Property Inquiry & Schedule Visit">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20" x-data="{ 
+  formSuccess: false, 
+  visitSuccess: false,
+  activeForm: 'inquiry'
+}">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] flex items-center gap-1 transition-colors rounded-md hover:bg-gray-50">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5" style="background:#C8A96A;color:#0F172A"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Contact Us</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Contact Us</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">We're Here to Help</span>
+      <h1 class="page-hero-title">Get in Touch<br>with Us</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">Submit a property inquiry, schedule a site visit, or simply say hello. Our experts respond within 24 hours — usually much sooner.</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTACT SECTION -->
+  <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+      <!-- LEFT: Contact Info -->
+      <div class="lg:col-span-1 space-y-6">
+        <!-- Office Info Card -->
+        <div class="bg-navy-900 text-white rounded-xl p-7 border border-navy-800">
+          <h3 class="text-lg font-serif font-bold text-gold-400 mb-5">Our Office</h3>
+          <div class="space-y-4">
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 shrink-0">
+                <i data-lucide="map-pin" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm mb-0.5">Address</p>
+                <p class="text-slate-400 text-xs leading-relaxed">402, Golden Icon Tower, Dumas Road, Piplod, Surat, Gujarat – 395007</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 shrink-0">
+                <i data-lucide="phone" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm mb-0.5">Phone</p>
+                <a href="tel:+912614058899" class="text-slate-400 text-xs hover:text-gold-400 transition-colors">+91 261 405 8899</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 shrink-0">
+                <i data-lucide="mail" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm mb-0.5">Email</p>
+                <a href="mailto:info@surathomes.com" class="text-slate-400 text-xs hover:text-gold-400 transition-colors">info@surathomes.com</a>
+              </div>
+            </div>
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 shrink-0">
+                <i data-lucide="clock" class="h-5 w-5"></i>
+              </div>
+              <div>
+                <p class="font-semibold text-sm mb-1">Business Hours</p>
+                <p class="text-slate-400 text-xs">Monday – Saturday</p>
+                <p class="text-slate-400 text-xs">9:00 AM – 8:00 PM</p>
+                <p class="text-slate-500 text-xs mt-1 italic">Sundays by appointment only</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <a href="https://wa.me/912614058899" target="_blank" class="flex items-center space-x-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl p-5 transition-colors">
+          <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+            <i data-lucide="message-circle" class="h-6 w-6"></i>
+          </div>
+          <div>
+            <p class="font-bold text-base">WhatsApp Us Directly</p>
+            <p class="text-emerald-100 text-xs mt-0.5">Usually responds within 30 minutes during office hours</p>
+          </div>
+        </a>
+
+        <!-- Social Media -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h3 class="text-base font-serif font-bold text-navy-900 mb-4">Follow Us</h3>
+          <div class="grid grid-cols-2 gap-3">
+            <a href="#" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg bg-slate-50 hover:bg-navy-900 hover:text-white text-slate-700 text-sm font-semibold transition-all group">
+              <i data-lucide="instagram" class="h-4.5 w-4.5 text-pink-500 group-hover:text-pink-300"></i>
+              <span>Instagram</span>
+            </a>
+            <a href="#" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg bg-slate-50 hover:bg-navy-900 hover:text-white text-slate-700 text-sm font-semibold transition-all group">
+              <i data-lucide="facebook" class="h-4.5 w-4.5 text-blue-600 group-hover:text-blue-400"></i>
+              <span>Facebook</span>
+            </a>
+            <a href="#" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg bg-slate-50 hover:bg-navy-900 hover:text-white text-slate-700 text-sm font-semibold transition-all group">
+              <i data-lucide="linkedin" class="h-4.5 w-4.5 text-sky-600 group-hover:text-sky-400"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="#" class="flex items-center space-x-3 py-2.5 px-4 rounded-lg bg-slate-50 hover:bg-navy-900 hover:text-white text-slate-700 text-sm font-semibold transition-all group">
+              <i data-lucide="youtube" class="h-4.5 w-4.5 text-red-500 group-hover:text-red-400"></i>
+              <span>YouTube</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Forms -->
+      <div class="lg:col-span-2 space-y-6">
+        <!-- Form Tab Switcher -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm">
+          <div class="flex border-b border-slate-200">
+            <button @click="activeForm = 'inquiry'" :class="activeForm === 'inquiry' ? 'border-b-2 border-gold-500 text-navy-900 font-bold' : 'text-slate-500 hover:text-navy-900'" class="flex-1 py-4 text-sm uppercase tracking-wider transition-colors">Property Inquiry</button>
+            <button @click="activeForm = 'visit'" :class="activeForm === 'visit' ? 'border-b-2 border-gold-500 text-navy-900 font-bold' : 'text-slate-500 hover:text-navy-900'" class="flex-1 py-4 text-sm uppercase tracking-wider transition-colors">Schedule Site Visit</button>
+          </div>
+
+          <!-- Inquiry Form -->
+          <div x-show="activeForm === 'inquiry'" class="p-8">
+            <div x-show="formSuccess" x-transition class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg p-4 flex items-center space-x-3">
+              <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-600 shrink-0"></i>
+              <p class="text-sm font-semibold">Thank you! Your inquiry has been received. Our team will contact you within 24 hours.</p>
+            </div>
+            <form @submit.prevent="formSuccess = true" class="space-y-5" x-show="!formSuccess">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Full Name *</label>
+                  <input type="text" required placeholder="Your full name" class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Mobile Number *</label>
+                  <input type="tel" required placeholder="+91 XXXXX XXXXX" class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Email Address</label>
+                  <input type="email" placeholder="your@email.com" class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">I Am Interested In</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option>Buying Property</option>
+                    <option>Renting Property</option>
+                    <option>Selling My Property</option>
+                    <option>New Builder Projects</option>
+                    <option>Investment Advice</option>
+                    <option>NRI Property Services</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Preferred Location</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option value="">Any Location</option>
+                    <option>Vesu</option>
+                    <option>Adajan</option>
+                    <option>Pal</option>
+                    <option>Piplod</option>
+                    <option>Althan</option>
+                    <option>Dumas Road</option>
+                    <option>Katargam</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Budget Range</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option value="">Select Range</option>
+                    <option>Under ₹50 Lakhs</option>
+                    <option>₹50 L – ₹1 Crore</option>
+                    <option>₹1 Cr – ₹2 Crore</option>
+                    <option>₹2 Cr – ₹5 Crore</option>
+                    <option>Above ₹5 Crore</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Your Message / Requirements</label>
+                <textarea rows="4" placeholder="Tell us about your ideal property – BHK configuration, amenities you need, timeline, or any specific requirements..." class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500 resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold py-4 rounded text-sm uppercase tracking-wider transition-colors btn-gold-hover">
+                Submit Inquiry
+              </button>
+              <p class="text-center text-xs text-slate-400">Your information is 100% confidential and never shared with third parties.</p>
+            </form>
+          </div>
+
+          <!-- Schedule Visit Form -->
+          <div x-show="activeForm === 'visit'" class="p-8">
+            <div x-show="visitSuccess" x-transition class="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg p-4 flex items-center space-x-3">
+              <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-600 shrink-0"></i>
+              <p class="text-sm font-semibold">Excellent! Your site visit has been booked. Your assigned agent will call you within 2 hours to confirm the time.</p>
+            </div>
+            <form @submit.prevent="visitSuccess = true" class="space-y-5" x-show="!visitSuccess">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Full Name *</label>
+                  <input type="text" required placeholder="Your full name" class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Mobile Number *</label>
+                  <input type="tel" required placeholder="+91 XXXXX XXXXX" class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Preferred Visit Date *</label>
+                  <input type="date" required class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500 cursor-pointer" min="2026-06-29">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Preferred Time Slot</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option>Morning (9 AM – 12 PM)</option>
+                    <option>Afternoon (12 PM – 4 PM)</option>
+                    <option>Evening (4 PM – 7 PM)</option>
+                    <option>Flexible – Any time works</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Property Type</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option>Residential Flat / Apartment</option>
+                    <option>Bungalow / Villa</option>
+                    <option>Commercial Office</option>
+                    <option>Builder Project Site</option>
+                    <option>Rental Property</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Preferred Location</label>
+                  <select class="w-full text-sm border border-slate-200 rounded px-4 py-3 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+                    <option value="">Select Location</option>
+                    <option>Vesu</option>
+                    <option>Adajan</option>
+                    <option>Pal</option>
+                    <option>Piplod</option>
+                    <option>Althan</option>
+                    <option>Dumas Road</option>
+                    <option>Katargam</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Additional Notes for Agent</label>
+                <textarea rows="3" placeholder="E.g., I have a young family and need proximity to schools. My budget is ₹1.5 Cr for a ready-to-move flat..." class="w-full text-sm border border-slate-200 rounded px-4 py-3 focus:outline-none focus:border-gold-500 resize-none"></textarea>
+              </div>
+              <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-4 rounded text-sm uppercase tracking-wider transition-colors">
+                Book Site Visit
+              </button>
+              <p class="text-center text-xs text-slate-400">A SuratHomes agent will personally call you to confirm within 2 hours.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GOOGLE MAP PLACEHOLDER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex items-center space-x-2">
+        <i data-lucide="map" class="h-5 w-5 text-gold-500"></i>
+        <h3 class="font-serif font-bold text-navy-900">Find Our Office</h3>
+      </div>
+      <div class="bg-slate-100 h-80 flex items-center justify-center relative">
+        <div class="text-center text-slate-500 space-y-3">
+          <i data-lucide="map-pin" class="h-16 w-16 mx-auto text-gold-500/50"></i>
+          <p class="font-semibold text-slate-700 text-lg">Golden Icon Tower, Dumas Road, Piplod, Surat</p>
+          <p class="text-sm text-slate-500">Gujarat – 395007</p>
+          <a href="https://maps.google.com/?q=Golden+Icon+Tower,Dumas+Road,Piplod,Surat,Gujarat" target="_blank" class="inline-flex items-center space-x-2 bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold px-5 py-2.5 rounded uppercase tracking-wider transition-colors">
+            <i data-lucide="navigation" class="h-4 w-4"></i>
+            <span>Open in Google Maps</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-16 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i data-lucide="home" class="h-6 w-6 text-gold-500"></i>
+          <span class="text-xl font-bold font-serif text-white">Surat<span class="text-gold-500">Homes</span></span>
+        </div>
+        <p class="text-sm mb-5 leading-relaxed">Connecting buyers, builders, and brokers with Surat's finest residential & commercial properties since 2018.</p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-gold-500"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="properties.html" class="hover:text-gold-500">Search Listings</a></li>
+          <li><a href="projects.html" class="hover:text-gold-500">New Projects</a></li>
+          <li><a href="agents.html" class="hover:text-gold-500">Our Agents</a></li>
+          <li><a href="buy.html" class="hover:text-gold-500">Buy Guide</a></li>
+          <li><a href="rent.html" class="hover:text-gold-500">Rental Properties</a></li>
+          <li><a href="faq.html" class="hover:text-gold-500">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4">Our Office</h4>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start space-x-3"><i data-lucide="map-pin" class="h-5 w-5 text-gold-500 shrink-0 mt-0.5"></i><span>402, Golden Icon Tower, Dumas Road, Piplod, Surat – 395007</span></li>
+          <li class="flex items-center space-x-3"><i data-lucide="phone" class="h-5 w-5 text-gold-500 shrink-0"></i><span>+91 261 405 8899</span></li>
+          <li class="flex items-center space-x-3"><i data-lucide="mail" class="h-5 w-5 text-gold-500 shrink-0"></i><span>info@surathomes.com</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4">Newsletter</h4>
+        <p class="text-sm mb-4">Get the latest listings and market insights delivered directly to your inbox.</p>
+        <form class="flex flex-col space-y-2">
+          <input type="email" placeholder="Your email address" class="px-4 py-2.5 rounded bg-navy-900 border border-gold-alpha text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 text-sm">
+          <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold py-2 px-4 rounded text-sm transition-colors">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs">
+      <p>© 2026 SuratHomes. All rights reserved. RERA Registered No: PR/GJ/SURAT/395007.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="faq.html" class="hover:text-gold-500">Privacy Policy</a>
+        <a href="faq.html" class="hover:text-gold-500">Terms of Service</a>
+        <a href="faq.html" class="hover:text-gold-500">RERA Disclosures</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

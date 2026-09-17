@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real Estate Agents in Surat | SuratHomes Verified Brokers</title>
+  <meta name="description" content="Connect with Surat's top certified real estate agents and property brokers. Specialised in luxury residences, commercial properties, and NRI investment consulting.">
+  <meta property="og:title" content="SuratHomes – Premier Real Estate Agents & Brokers in Surat">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-semibold rounded-md" style="color:#C8A96A">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] flex items-center gap-1 transition-colors rounded-md hover:bg-gray-50">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Your Trusted Advisors</span>
+      <h1 class="page-hero-title">Meet Our Expert<br>Agents</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">45+ certified real estate professionals across Surat. Multilingual, RERA-registered, and committed to securing the best deal for you.</p>
+    </div>
+  </section>
+
+  <!-- AGENT SPECIALIZATION FILTER -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" x-data="{ spec: 'all' }">
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <button @click="spec='all'" :class="spec==='all' ? 'bg-navy-900 text-white border-navy-900' : 'bg-white text-slate-600 border-slate-200 hover:border-navy-900'" class="px-5 py-2 rounded border text-sm font-bold uppercase tracking-wider transition-colors">All Agents</button>
+      <button @click="spec='luxury'" :class="spec==='luxury' ? 'bg-gold-500 text-navy-950 border-gold-500' : 'bg-white text-slate-600 border-slate-200 hover:border-gold-500'" class="px-5 py-2 rounded border text-sm font-bold uppercase tracking-wider transition-colors">Luxury Homes</button>
+      <button @click="spec='commercial'" :class="spec==='commercial' ? 'bg-navy-800 text-white border-navy-800' : 'bg-white text-slate-600 border-slate-200 hover:border-navy-800'" class="px-5 py-2 rounded border text-sm font-bold uppercase tracking-wider transition-colors">Commercial</button>
+      <button @click="spec='nri'" :class="spec==='nri' ? 'bg-emerald-600 text-white border-emerald-600' : 'bg-white text-slate-600 border-slate-200 hover:border-emerald-600'" class="px-5 py-2 rounded border text-sm font-bold uppercase tracking-wider transition-colors">NRI Services</button>
+      <button @click="spec='rental'" :class="spec==='rental' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-600'" class="px-5 py-2 rounded border text-sm font-bold uppercase tracking-wider transition-colors">Rental</button>
+    </div>
+
+    <!-- Agent Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Agent 1 (Luxury, NRI) -->
+      <div x-show="spec === 'all' || spec === 'luxury' || spec === 'nri'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Mihir Shah Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <div>
+              <span class="bg-gold-500 text-navy-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Top Agent</span>
+            </div>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Mihir Shah</h3></a>
+          <p class="text-xs text-slate-500 mb-3">Senior Property Advisor · 12 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">Luxury & NRI</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">38 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Gujarati, Hindi, English</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045678" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045678" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 2 (Commercial) -->
+      <div x-show="spec === 'all' || spec === 'commercial'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Ronak Desai Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <span class="bg-navy-800 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase border border-slate-600">Commercial Expert</span>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 text-slate-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Ronak Desai</h3></a>
+          <p class="text-xs text-slate-500 mb-3">Commercial Property Consultant · 8 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">Commercial & Office</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">22 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Gujarati, Hindi, Marathi</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045679" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045679" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 3 (Luxury, Rental) -->
+      <div x-show="spec === 'all' || spec === 'luxury' || spec === 'rental'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=400&q=80" alt="Priya Mehta Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <span class="bg-gold-500 text-navy-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Rising Star</span>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Priya Mehta</h3></a>
+          <p class="text-xs text-slate-500 mb-3">Residential Specialist · 6 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">Luxury & Rentals</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">45 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Gujarati, Hindi, English</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045680" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045680" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 4 (NRI) -->
+      <div x-show="spec === 'all' || spec === 'nri'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&q=80" alt="Vikram Nair NRI Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <span class="bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">NRI Specialist</span>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Vikram Nair</h3></a>
+          <p class="text-xs text-slate-500 mb-3">NRI Investment Advisor · 14 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">NRI & Investment</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">18 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Malayalam, Hindi, English</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045681" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045681" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 5 (Rental) -->
+      <div x-show="spec === 'all' || spec === 'rental'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80" alt="Ananya Patel Rental Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <span class="bg-blue-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Rental Expert</span>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 text-slate-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Ananya Patel</h3></a>
+          <p class="text-xs text-slate-500 mb-3">Rental & Leasing Consultant · 5 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">Residential Rentals</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">61 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Gujarati, Hindi</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045682" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045682" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 6 (Commercial, Luxury) -->
+      <div x-show="spec === 'all' || spec === 'commercial' || spec === 'luxury'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow">
+        <a href="agent-profile.html" class="block relative h-56 bg-gradient-to-b from-navy-900 to-navy-800">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=80" alt="Dinesh Jain Agent" class="w-full h-full object-cover object-center opacity-80 transition-opacity hover:opacity-100">
+          <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between">
+            <span class="bg-gold-500 text-navy-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase">Senior Partner</span>
+            <div class="flex text-gold-400 space-x-0.5">
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+              <i data-lucide="star" class="h-4 w-4 fill-gold-400"></i>
+            </div>
+          </div>
+        </a>
+        <div class="p-6">
+          <a href="agent-profile.html" class="hover:text-gold-500 transition-colors"><h3 class="text-xl font-serif font-bold text-navy-900">Dinesh Jain</h3></a>
+          <p class="text-xs text-slate-500 mb-3">Senior Partner · 18 Years Experience</p>
+          <div class="grid grid-cols-2 gap-3 mb-4 text-xs">
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Specialization</p>
+              <p class="font-bold text-navy-900 mt-0.5">Luxury & Commercial</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2">
+              <p class="text-slate-500 font-semibold">Active Listings</p>
+              <p class="font-bold text-navy-900 mt-0.5">29 Properties</p>
+            </div>
+            <div class="bg-slate-50 rounded p-2 col-span-2">
+              <p class="text-slate-500 font-semibold">Languages</p>
+              <p class="font-bold text-navy-900 mt-0.5">Gujarati, Hindi, English, Marwari</p>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2">
+            <a href="tel:+919712045683" class="flex-1 bg-navy-900 hover:bg-navy-800 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4 text-gold-500"></i>
+              <span>Call Agent</span>
+            </a>
+            <a href="https://wa.me/919712045683" target="_blank" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs py-2.5 rounded flex items-center justify-center space-x-2 transition-colors">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- JOIN AS AGENT CTA -->
+  <section class="bg-navy-900 py-14 text-white text-center px-4">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-2xl md:text-3xl font-serif font-bold mb-4">Are You a Real Estate Agent?</h2>
+      <p class="text-slate-400 text-sm mb-8">Join Surat's fastest-growing real estate network. Access exclusive listings, verified buyer leads, and SuratHomes' digital marketing platform.</p>
+      <a href="contact.html" class="inline-block bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-8 py-3.5 rounded text-sm uppercase tracking-wider transition-colors">Apply to Join SuratHomes Network</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="index.html" class="hover:text-gold-500">Home</a>
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="projects.html" class="hover:text-gold-500">New Projects</a>
+        <a href="faq.html" class="hover:text-gold-500">FAQ</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequently Asked Questions – Property, RERA, Loans & Legal | SuratHomes</title>
+  <meta name="description" content="Find answers to all your real estate questions in Surat – from buying and renting processes, to RERA compliance, stamp duty, home loans, and legal documentation.">
+  <meta property="og:title" content="SuratHomes FAQ – Real Estate Property Questions for Surat Buyers & Investors">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20" x-data="{ 
+  activeCategory: 'buying',
+  search: '',
+  faqs: {
+    buying: [
+      { q: 'What is the typical home buying process in Surat?', a: 'The process starts with property shortlisting and verification of RERA registration. Once shortlisted, you sign an MOU and pay a token (5–10%). Then you conduct legal due diligence, arrange financing, sign the Sale Agreement, pay stamp duty, and get the property registered at the sub-registrar office.' },
+      { q: 'What documents do I need to provide as a buyer?', a: 'You need: Aadhar card, PAN card, latest 3 months bank statements, last 2 years ITR, passport-size photos, and KYC documents. For home loan, your income proof and employment details are also required.' },
+      { q: 'Can NRIs buy property in Surat?', a: 'Yes! NRIs can purchase residential and commercial property in India without RBI permission. They can also avail of home loans from Indian banks. Our NRI team specializes in remote property transactions with virtual tours and power-of-attorney arrangements.' },
+      { q: 'How long does property registration take in Surat?', a: 'Once all documents are in order and payment is made, property registration at the sub-registrar office in Surat typically takes 1–3 working days. The registered sale deed is provided on the same day or next day.' }
+    ],
+    selling: [
+      { q: 'How do I list my property on SuratHomes?', a: 'Contact us via WhatsApp, email, or fill out the contact form. Our agent will visit the property, verify documents, take professional photographs, and create a premium listing within 24–48 hours at no upfront cost.' },
+      { q: 'What is capital gains tax when selling property in Surat?', a: 'If you sell property held for less than 2 years: Short-Term Capital Gains (STCG) applies at your tax slab rate. If held for more than 2 years: Long-Term Capital Gains (LTCG) at 20% with indexation applies. Section 54 exemption can be used to reinvest proceeds in another property.' },
+      { q: 'How do you determine the right selling price?', a: 'Our agents perform a comprehensive Comparative Market Analysis (CMA) using recent sold transactions, current market demand, property condition, location premiums, and upcoming infrastructure projects to determine the most competitive selling price.' },
+      { q: 'What is the seller's TDS obligation?', a: 'If the sale value exceeds ₹50 lakhs, the buyer is legally required to deduct 1% TDS and deposit it with the government. The seller will receive 99% of the agreed amount and can claim TDS credit in their income tax return.' }
+    ],
+    renting: [
+      { q: 'What is the standard rental deposit in Surat?', a: 'In Surat, landlords typically ask for 2–3 months security deposit. Some premium properties may require up to 6 months deposit. This should be refunded within 30–60 days of vacating, minus any legitimate deductions.' },
+      { q: 'Is a rental agreement mandatory in Gujarat?', a: 'Yes, a rental agreement (Leave & License Agreement) is legally required. It should be registered if the tenure exceeds 11 months. Unregistered agreements have limited legal validity in court.' },
+      { q: 'What is police verification for tenants?', a: 'Under Gujarat Disturbed Areas Act requirements, landlords must submit Form C for tenant verification at the local police station within 24 hours of the tenant moving in. Our agents can assist you with this process.' },
+      { q: 'Can I sublet a rental property in Surat?', a: 'Subletting is not permitted unless the original lease agreement explicitly allows it in writing. Doing so without permission is a breach of contract and could lead to immediate eviction.' }
+    ],
+    registration: [
+      { q: 'Where do I register my property in Surat?', a: 'Property registration in Surat is done at the District Sub-Registrar Office or Joint Sub-Registrar Office. Both buyer and seller (or their authorized representatives) must be present with original documents, photographs, and payment receipts for stamp duty.' },
+      { q: 'What documents are required for property registration?', a: 'Required documents include: Original sale deed, Encumbrance Certificate, Property Tax clearance certificate, NOC from society, identity proofs of buyer and seller, passport-size photos, and the Challan for stamp duty payment.' },
+      { q: 'Can I register property remotely or through a representative?', a: 'Yes, you can authorize a representative using a registered Power of Attorney (PoA). This is especially useful for NRIs or buyers who cannot be physically present. The PoA itself must be registered and notarized.' }
+    ],
+    loans: [
+      { q: 'What is the maximum home loan amount I can get in Surat?', a: 'Banks in India typically finance up to 75–80% of the property value. The Loan-to-Value (LTV) ratio is 90% for loans up to ₹30 lakhs, 80% for ₹30–75 lakhs, and 75% for above ₹75 lakhs. Your repayment capacity (income) is the primary deciding factor.' },
+      { q: 'Which banks offer the best home loan rates in Gujarat?', a: 'Currently, SBI (8.5%), HDFC Bank (8.65%), Bank of Baroda (8.6%), and LIC Housing Finance (8.55%) offer competitive rates. It is advisable to compare processing fees, prepayment charges, and customer service along with interest rates.' },
+      { q: 'Is there any home loan subsidy available in Gujarat?', a: 'Under PMAY (Pradhan Mantri Awas Yojana), first-time buyers in the EWS/LIG/MIG category can get an interest subsidy of 3–6.5% for loans up to certain limits. Our advisors can verify your eligibility and guide you through the PMAY application.' }
+    ],
+    rera: [
+      { q: 'What is RERA and why is it important in Surat?', a: 'RERA (Real Estate Regulatory Authority) is a mandatory registration for all real estate projects in India. For buyers in Surat, it means the builder must disclose project details, adhere to timelines, and maintain an escrow account. A RERA-registered project offers legal protection if the builder delays or defaults.' },
+      { q: 'How do I verify a RERA registration number in Gujarat?', a: 'Visit the official Gujarat RERA portal at https://gujrera.gujarat.gov.in. Enter the project or promoter name, or the RERA number to view project approvals, escrow details, agent registrations, and complaint history.' },
+      { q: 'What can I do if a builder violates RERA rules in Surat?', a: 'You can file a complaint online at the Gujarat RERA portal. RERA Adjudicating Officers can order compensation, interest on delayed payments, or project handover. Complaints are typically resolved within 60 days.' }
+    ],
+    stampduty: [
+      { q: 'How much stamp duty do I pay in Gujarat?', a: 'The standard stamp duty in Gujarat is 4.9% of the property\'s market value or transaction value (whichever is higher). Additionally, 1% registration charges apply. Women buyers get a 1% rebate, making their effective stamp duty 3.9%.' },
+      { q: 'When and how do I pay stamp duty in Surat?', a: 'Stamp duty is paid before the execution of the sale deed. Payment is made through the GRAS (Government Receipt Accounting System) online portal or at authorized stamp vendors and cooperative banks in Surat. Our team can assist with the calculation and payment process.' },
+      { q: 'Is stamp duty negotiable or avoidable?', a: 'No. Stamp duty is a mandatory government charge that cannot be negotiated or avoided legally. Attempting to undervalue the property in the agreement to reduce stamp duty is considered tax evasion and is liable to penalties.' }
+    ],
+    tax: [
+      { q: 'What is property tax in Surat and who pays it?', a: 'Property tax (also called municipal tax) in Surat is levied by the Surat Municipal Corporation (SMC). The owner pays property tax annually. It is calculated based on the Annual Rateable Value (ARV) of the property and varies by zone and property type.' },
+      { q: 'Can I get a tax deduction on my home loan?', a: 'Yes! Under Section 80C, you can claim up to ₹1.5 lakh deduction on principal repayment. Under Section 24(b), up to ₹2 lakh on interest paid for self-occupied property. First-time buyers can additionally claim ₹50,000 under Section 80EE (subject to conditions).' },
+      { q: 'Is GST applicable on property purchase in Surat?', a: 'GST applies to under-construction properties at 5% (affordable housing) or 12% (other properties) on the transaction value, excluding land value. Ready-to-move-in properties with OC are exempt from GST. Always confirm GST implications with your accountant.' }
+    ]
+  }
+}">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-semibold flex items-center gap-1 rounded-md" style="color:#C8A96A">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:bg-gray-50" style="color:#C8A96A"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Knowledge Centre</span>
+      <h1 class="page-hero-title">Frequently Asked<br>Questions</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">Everything you need to know about buying, renting, investing, and registering property in Surat, Gujarat.</p>
+    </div>
+  </section>
+
+  <!-- FAQ MAIN SECTION -->
+  <section class="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-10">
+      
+      <!-- Category Sidebar -->
+      <aside class="lg:w-64 shrink-0">
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-4 sticky top-24">
+          <h3 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4 px-2">FAQ Categories</h3>
+          <nav class="space-y-1">
+            <button @click="activeCategory = 'buying'" :class="activeCategory === 'buying' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="home" class="h-4 w-4"></i><span>Buying Process</span>
+            </button>
+            <button @click="activeCategory = 'selling'" :class="activeCategory === 'selling' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="tag" class="h-4 w-4"></i><span>Selling Property</span>
+            </button>
+            <button @click="activeCategory = 'renting'" :class="activeCategory === 'renting' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="key" class="h-4 w-4"></i><span>Renting</span>
+            </button>
+            <button @click="activeCategory = 'registration'" :class="activeCategory === 'registration' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="file-text" class="h-4 w-4"></i><span>Registration</span>
+            </button>
+            <button @click="activeCategory = 'loans'" :class="activeCategory === 'loans' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="banknote" class="h-4 w-4"></i><span>Home Loans</span>
+            </button>
+            <button @click="activeCategory = 'rera'" :class="activeCategory === 'rera' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="shield" class="h-4 w-4"></i><span>RERA</span>
+            </button>
+            <button @click="activeCategory = 'stampduty'" :class="activeCategory === 'stampduty' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="stamp" class="h-4 w-4"></i><span>Stamp Duty</span>
+            </button>
+            <button @click="activeCategory = 'tax'" :class="activeCategory === 'tax' ? 'bg-navy-900 text-white' : 'text-slate-600 hover:bg-slate-100'" class="w-full text-left text-sm font-semibold px-4 py-2.5 rounded transition-colors flex items-center space-x-2">
+              <i data-lucide="receipt" class="h-4 w-4"></i><span>Property Tax</span>
+            </button>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- FAQ Accordion Area -->
+      <main class="flex-1">
+        <template x-for="(category, catKey) in faqs" :key="catKey">
+          <div x-show="activeCategory === catKey" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 translate-y-2" x-transition:enter-end="opacity-100 translate-y-0">
+            <template x-for="(item, index) in category" :key="index">
+              <div x-data="{ open: index === 0 }" class="mb-3">
+                <button @click="open = !open" class="w-full bg-white rounded-xl border border-slate-200 shadow-sm px-6 py-5 flex items-start justify-between text-left hover:border-gold-400 transition-colors">
+                  <span class="text-sm font-semibold text-navy-900 pr-8" x-text="item.q"></span>
+                  <i data-lucide="plus" class="h-5 w-5 text-gold-500 shrink-0 transition-transform duration-200" :class="open ? 'rotate-45' : ''"></i>
+                </button>
+                <div x-show="open" 
+                     x-transition:enter="transition ease-out duration-200"
+                     x-transition:enter-start="opacity-0 -translate-y-2"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-150"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 -translate-y-2"
+                     class="bg-white border-x border-b border-slate-200 rounded-b-xl shadow-sm px-6 py-5 -mt-1">
+                  <p class="text-sm text-slate-600 leading-relaxed" x-text="item.a"></p>
+                </div>
+              </div>
+            </template>
+          </div>
+        </template>
+
+        <!-- CTA Contact Box -->
+        <div class="mt-8 bg-navy-900 text-white rounded-xl p-8 border border-navy-800 text-center">
+          <i data-lucide="message-circle" class="h-8 w-8 text-gold-500 mx-auto mb-4"></i>
+          <h3 class="text-xl font-serif font-bold mb-2">Still Have Questions?</h3>
+          <p class="text-slate-400 text-sm mb-6">Our expert team is available Monday–Saturday, 9 AM to 8 PM to answer any specific queries about your property situation in Surat.</p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="contact.html" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold px-8 py-3 rounded text-sm uppercase tracking-wider transition-colors">Contact Us</a>
+            <a href="https://wa.me/912614058899" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded text-sm uppercase tracking-wider transition-colors flex items-center justify-center space-x-2">
+              <i data-lucide="message-circle" class="h-4 w-4"></i>
+              <span>WhatsApp Us</span>
+            </a>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="index.html" class="hover:text-gold-500">Home</a>
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="agents.html" class="hover:text-gold-500">Agents</a>
+        <a href="buy.html" class="hover:text-gold-500">Buy Guide</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About SuratHomes – Surat's Most Trusted Real Estate Platform</title>
+  <meta name="description" content="Learn about SuratHomes' mission, company story, team, and why we are Surat's most trusted real estate platform. Delivering premium property services since 2018.">
+  <meta property="og:title" content="About SuratHomes | Premium Real Estate Platform for Surat">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] flex items-center gap-1 transition-colors rounded-md hover:bg-gray-50">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:bg-gray-50" style="color:#C8A96A"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-semibold rounded-md" style="color:#C8A96A">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Our Story</span>
+      <h1 class="page-hero-title">Surat's Most Trusted<br>Real Estate Brand</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">Founded in 2018 on the principles of transparency, trust, and excellence — SuratHomes was born to redefine property transactions in Gujarat's fastest-growing city.</p>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="bg-white border-b border-slate-100 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-4xl font-serif font-bold text-navy-900">8+</p>
+          <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Years in Surat Market</p>
+        </div>
+        <div>
+          <p class="text-4xl font-serif font-bold text-navy-900">2,500+</p>
+          <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Properties Listed</p>
+        </div>
+        <div>
+          <p class="text-4xl font-serif font-bold text-navy-900">1,200+</p>
+          <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Happy Families</p>
+        </div>
+        <div>
+          <p class="text-4xl font-serif font-bold text-navy-900">45+</p>
+          <p class="text-xs text-slate-500 font-semibold uppercase tracking-wider mt-1">Expert Agents</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY & MISSION/VISION -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+      <div>
+        <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">The Origin</span>
+        <h2 class="text-3xl font-serif font-bold text-navy-900 mt-2 mb-6">How SuratHomes Began</h2>
+        <div class="space-y-4 text-slate-600 text-sm leading-relaxed">
+          <p>SuratHomes was conceptualized in 2018 by a team of Surat-based real estate professionals who saw a critical market gap — buyers and renters in Surat were overwhelmed by unverified listings, opaque pricing, and dishonest brokerage practices.</p>
+          <p>We set out to build something different: a premium platform that combines verified RERA listings, local neighborhood expertise, and a concierge-style agent network — all in one seamless digital experience.</p>
+          <p>Today, SuratHomes is proud to be the real estate partner of choice for over 1,200 families, hundreds of NRI investors, and Surat's leading builders and developers.</p>
+        </div>
+      </div>
+      <div class="rounded-2xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=800&q=80" alt="SuratHomes Office" class="w-full h-80 object-cover">
+      </div>
+    </div>
+
+    <!-- Mission & Vision Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-navy-900 text-white rounded-xl p-8 border border-navy-800">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 mb-6">
+          <i data-lucide="target" class="h-6 w-6"></i>
+        </div>
+        <h3 class="text-xl font-serif font-bold text-gold-400 mb-3">Our Mission</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">To simplify and dignify real estate transactions in Surat through technology, verified data, and expert human guidance — making property ownership accessible, transparent, and enjoyable for all.</p>
+      </div>
+
+      <div class="bg-white rounded-xl p-8 border border-slate-200 shadow-sm">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-600 mb-6">
+          <i data-lucide="eye" class="h-6 w-6"></i>
+        </div>
+        <h3 class="text-xl font-serif font-bold text-navy-900 mb-3">Our Vision</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">To become Gujarat's most trusted and innovative real estate ecosystem — connecting every buyer, seller, investor, and builder through a platform built on integrity, local knowledge, and premium service.</p>
+      </div>
+
+      <div class="bg-navy-900 text-white rounded-xl p-8 border border-navy-800">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center text-gold-500 mb-6">
+          <i data-lucide="shield-check" class="h-6 w-6"></i>
+        </div>
+        <h3 class="text-xl font-serif font-bold text-gold-400 mb-3">Our Values</h3>
+        <ul class="text-slate-400 text-sm space-y-2 leading-relaxed">
+          <li class="flex items-center space-x-2"><i data-lucide="check" class="h-4 w-4 text-gold-500 shrink-0"></i><span>Total Transparency in every transaction</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check" class="h-4 w-4 text-gold-500 shrink-0"></i><span>Verified RERA listings only</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check" class="h-4 w-4 text-gold-500 shrink-0"></i><span>Client-first advisory</span></li>
+          <li class="flex items-center space-x-2"><i data-lucide="check" class="h-4 w-4 text-gold-500 shrink-0"></i><span>Premium yet accessible service</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="py-16 bg-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">The People Behind SuratHomes</span>
+        <h2 class="text-3xl font-serif font-bold text-navy-900 mt-2">Leadership Team</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Team Member 1 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow">
+          <div class="h-52 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80" alt="Amit Shah Founder" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif font-bold text-navy-900 text-lg">Amit Shah</h3>
+            <p class="text-xs text-gold-600 font-semibold uppercase tracking-wider mb-2">Co-Founder & CEO</p>
+            <p class="text-xs text-slate-500 leading-relaxed">20+ years in Surat real estate. Former VP at a leading national property firm.</p>
+          </div>
+        </div>
+        <!-- Team Member 2 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow">
+          <div class="h-52 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=300&q=80" alt="Shreya Mehta COO" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif font-bold text-navy-900 text-lg">Shreya Mehta</h3>
+            <p class="text-xs text-gold-600 font-semibold uppercase tracking-wider mb-2">Co-Founder & COO</p>
+            <p class="text-xs text-slate-500 leading-relaxed">Operations & customer experience specialist with an MBA from IIM Ahmedabad.</p>
+          </div>
+        </div>
+        <!-- Team Member 3 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow">
+          <div class="h-52 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80" alt="Ravi Patel Head of Technology" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif font-bold text-navy-900 text-lg">Ravi Patel</h3>
+            <p class="text-xs text-gold-600 font-semibold uppercase tracking-wider mb-2">Head of Technology</p>
+            <p class="text-xs text-slate-500 leading-relaxed">15 years in proptech. Built real estate platforms across 3 countries before joining SuratHomes.</p>
+          </div>
+        </div>
+        <!-- Team Member 4 -->
+        <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 text-center hover:shadow-md transition-shadow">
+          <div class="h-52 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80" alt="Nisha Jain Head of Legal" class="w-full h-full object-cover object-top">
+          </div>
+          <div class="p-5">
+            <h3 class="font-serif font-bold text-navy-900 text-lg">Nisha Jain</h3>
+            <p class="text-xs text-gold-600 font-semibold uppercase tracking-wider mb-2">Head of Legal & Compliance</p>
+            <p class="text-xs text-slate-500 leading-relaxed">Specialized property attorney. Ensures every listing meets RERA and SMC compliance standards.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <span class="text-gold-600 font-semibold uppercase tracking-widest text-xs">Differentiated Service</span>
+      <h2 class="text-3xl font-serif font-bold text-navy-900 mt-2">Why Choose SuratHomes</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="shield-check" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">100% RERA Verified Listings</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Every property on our platform is cross-verified against the Gujarat RERA database before going live.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="users" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">Dedicated Human Advisor</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Each client is assigned a personal property advisor who guides them end-to-end — from shortlisting to handover.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="video" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">Virtual Tours Available</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">NRI investors and remote buyers can access virtual 360° property walkthroughs before scheduling physical visits.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="map-pin" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">Deep Local Knowledge</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Our agents are Surat-born professionals with in-depth knowledge of every micro-market from Adajan to Dumas Road.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="calculator" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">Free Financial Planning</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Use our EMI calculator, stamp duty planner, and get connected to Surat's preferred home loan advisors at zero cost.</p>
+        </div>
+      </div>
+      <div class="flex items-start space-x-4">
+        <div class="w-12 h-12 bg-gold-500/10 rounded-xl flex items-center justify-center text-gold-600 shrink-0">
+          <i data-lucide="phone" class="h-6 w-6"></i>
+        </div>
+        <div>
+          <h3 class="font-serif font-bold text-navy-900 mb-1">Post-Sale Support</h3>
+          <p class="text-slate-600 text-sm leading-relaxed">Our relationship doesn't end at registry. We provide post-sale rental management, resale support, and investment advisory.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="index.html" class="hover:text-gold-500">Home</a>
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="agents.html" class="hover:text-gold-500">Agents</a>
+        <a href="faq.html" class="hover:text-gold-500">FAQ</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

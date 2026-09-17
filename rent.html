@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rental Properties in Surat – Flats, Villas & Offices | SuratHomes</title>
+  <meta name="description" content="Find furnished and unfurnished rental flats, independent houses, commercial offices, PG accommodations, and co-working spaces across Surat, Gujarat.">
+  <meta property="og:title" content="Rent in Surat – Verified Flats, Villas, Offices & PG | SuratHomes">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20" x-data="{ rentalType: 'all', furnishModal: false, inquiryModal: false, selectedProperty: '' }">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-semibold flex items-center gap-1 rounded-md" style="color:#C8A96A">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm font-semibold hover:bg-gray-50" style="color:#C8A96A"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Find Your Next Home</span>
+      <h1 class="page-hero-title">Premium Rentals<br>in Surat</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">Furnished and unfurnished homes, family residences, co-working spaces, and PG accommodations — verified and ready to move.</p>
+    </div>
+  </section>
+
+  <!-- RENTAL CATEGORY TABS -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Type Selector -->
+    <div class="flex flex-wrap justify-center gap-3 mb-12">
+      <button @click="rentalType = 'all'" :class="rentalType === 'all' ? 'bg-navy-900 text-white border-navy-900' : 'bg-white text-slate-600 border-slate-200 hover:border-navy-900'" class="px-5 py-2.5 rounded border text-sm font-bold uppercase tracking-wider transition-colors">All Rentals</button>
+      <button @click="rentalType = 'residential'" :class="rentalType === 'residential' ? 'bg-gold-500 text-navy-950 border-gold-500' : 'bg-white text-slate-600 border-slate-200 hover:border-gold-500'" class="px-5 py-2.5 rounded border text-sm font-bold uppercase tracking-wider transition-colors">Residential</button>
+      <button @click="rentalType = 'commercial'" :class="rentalType === 'commercial' ? 'bg-navy-800 text-white border-navy-800' : 'bg-white text-slate-600 border-slate-200 hover:border-navy-800'" class="px-5 py-2.5 rounded border text-sm font-bold uppercase tracking-wider transition-colors">Commercial</button>
+      <button @click="rentalType = 'pg'" :class="rentalType === 'pg' ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200 hover:border-blue-600'" class="px-5 py-2.5 rounded border text-sm font-bold uppercase tracking-wider transition-colors">PG & Hostels</button>
+    </div>
+
+    <!-- Rental Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Rental 1 – Residential -->
+      <div x-show="rentalType === 'all' || rentalType === 'residential'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="3 BHK Furnished Vesu Rental" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Fully Furnished</span>
+          <span class="absolute top-4 right-4 bg-navy-950/90 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase border border-gold-alpha">Residential</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">Luxury 3 BHK Apartment</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>Vesu, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹45,000</p>
+              <p class="text-xs text-slate-500">per month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">3 BHK</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">2,200 sq.ft</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Semi-Furnished</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">2 Parking</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">Spacious sun-lit apartment on 9th floor of a premium society. AC in all rooms, modular kitchen, walk-in wardrobe, and club-house access.</p>
+          <button @click="selectedProperty = 'Luxury 3 BHK Apartment, Vesu'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+      <!-- Rental 2 – Residential -->
+      <div x-show="rentalType === 'all' || rentalType === 'residential'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="4 BHK Bungalow Adajan Rental" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-amber-500 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Semi-Furnished</span>
+          <span class="absolute top-4 right-4 bg-navy-950/90 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase border border-gold-alpha">Residential</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">4 BHK Independent Bungalow</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>Adajan, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹65,000</p>
+              <p class="text-xs text-slate-500">per month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">4 BHK</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">3,600 sq.ft</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">With Garden</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">3 Parking</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">Premium independent bungalow with private garden, servant quarters, open terrace, and double lockup garage. Ideal for families.</p>
+          <button @click="selectedProperty = '4 BHK Bungalow, Adajan'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+      <!-- Rental 3 – Commercial -->
+      <div x-show="rentalType === 'all' || rentalType === 'commercial'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=600&q=80" alt="Office Space Canal Road Surat" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-navy-800 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Office Space</span>
+          <span class="absolute top-4 right-4 bg-slate-800/90 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Commercial</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">Modern Office Space</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>Canal Road, Althan, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹55,000</p>
+              <p class="text-xs text-slate-500">per month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Office</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">1,800 sq.ft</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Fully Fitted</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">Contemporary open-plan office with partitioned cabins, server room, reception area, and dedicated parking. Ideal for IT and finance companies.</p>
+          <button @click="selectedProperty = 'Modern Office Space, Althan'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+      <!-- Rental 4 – Commercial Co-working -->
+      <div x-show="rentalType === 'all' || rentalType === 'commercial'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=600&q=80" alt="Co-working space Surat" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Co-Working</span>
+          <span class="absolute top-4 right-4 bg-slate-800/90 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Commercial</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">Premium Co-Working Desk</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>VIP Road, Vesu, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹8,500</p>
+              <p class="text-xs text-slate-500">per desk/month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">40 Desks</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Conference Rooms</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">24×7 Access</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">High-speed internet, private phone booths, cafeteria on site, stationery rooms, and dedicated managed reception services for startups and freelancers.</p>
+          <button @click="selectedProperty = 'Co-Working Space, VIP Road'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+      <!-- Rental 5 – PG -->
+      <div x-show="rentalType === 'all' || rentalType === 'pg'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80" alt="PG accommodation Surat" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-blue-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">PG Accommodation</span>
+          <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Available Now</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">Executive PG for Professionals</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>Pal, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹9,500</p>
+              <p class="text-xs text-slate-500">per month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Single Sharing</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Meals Included</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">WiFi</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">Clean, air-conditioned PG rooms in a secure building with meals (veg/non-veg option), laundry service, and common recreation area for working professionals.</p>
+          <button @click="selectedProperty = 'Executive PG, Pal'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+      <!-- Rental 6 – PG Girls Hostel -->
+      <div x-show="rentalType === 'all' || rentalType === 'pg'" x-transition class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden hover:shadow-lg transition-shadow duration-300">
+        <div class="relative h-56">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=600&q=80" alt="Girls Hostel Adajan Surat" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 bg-pink-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Girls Only Hostel</span>
+          <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded uppercase">Secure</span>
+        </div>
+        <div class="p-6">
+          <div class="flex justify-between items-start mb-3">
+            <div>
+              <h2 class="text-lg font-serif font-bold text-navy-900">Luxe Women's PG Hostel</h2>
+              <p class="text-xs text-slate-500 flex items-center mt-1"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1"></i>Adajan, Surat</p>
+            </div>
+            <div class="text-right">
+              <p class="text-xl font-serif font-bold text-navy-900">₹7,500</p>
+              <p class="text-xs text-slate-500">per month</p>
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">Double Sharing</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">24×7 Security</span>
+            <span class="text-[10px] font-bold bg-slate-100 text-slate-600 px-2 py-1 rounded">AC Rooms</span>
+          </div>
+          <p class="text-slate-600 text-xs leading-relaxed mb-4">Safe, clean, and monitored hostel for working women and students. CCTV, biometric entry, daily housekeeping, and nutritious meals included.</p>
+          <button @click="selectedProperty = 'Luxe Women PG, Adajan'; inquiryModal = true" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-2.5 rounded text-xs uppercase tracking-wider transition-colors">Inquire Now</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TENANT QUICK INQUIRY MODAL -->
+  <div x-show="inquiryModal" class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-navy-950/80 backdrop-blur-sm" style="display:none">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full">
+      <div class="flex items-center justify-between p-5 border-b border-slate-100">
+        <div>
+          <h3 class="text-lg font-serif font-bold text-navy-900">Rental Inquiry</h3>
+          <p class="text-xs text-gold-600 font-semibold" x-text="selectedProperty"></p>
+        </div>
+        <button @click="inquiryModal = false" class="text-slate-400 hover:text-slate-800">
+          <i data-lucide="x" class="h-6 w-6"></i>
+        </button>
+      </div>
+      <form class="p-5 space-y-4">
+        <input type="text" placeholder="Your Full Name" class="w-full text-sm border border-slate-200 rounded px-4 py-2.5 focus:outline-none focus:border-gold-500">
+        <input type="tel" placeholder="Mobile Number" class="w-full text-sm border border-slate-200 rounded px-4 py-2.5 focus:outline-none focus:border-gold-500">
+        <select class="w-full text-sm border border-slate-200 rounded px-4 py-2.5 focus:outline-none focus:border-gold-500 bg-white">
+          <option value="">Preferred Move-in Date</option>
+          <option>Within 15 days</option>
+          <option>Within 1 month</option>
+          <option>Within 3 months</option>
+          <option>Flexible</option>
+        </select>
+        <textarea rows="3" placeholder="Any special requirements..." class="w-full text-sm border border-slate-200 rounded px-4 py-2.5 focus:outline-none focus:border-gold-500 resize-none"></textarea>
+        <button type="submit" @click="inquiryModal = false" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold py-3 rounded text-sm uppercase tracking-wider transition-colors">Submit Inquiry</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- RENTAL CHECKLIST -->
+  <section class="py-16 bg-navy-950 text-white px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-10">
+        <span class="text-gold-500 font-semibold uppercase tracking-widest text-xs">Be a Smart Tenant</span>
+        <h2 class="text-3xl font-serif font-bold mt-2">Rental Tenant Checklist</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-gold-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Read the Lease Agreement</p>
+            <p class="text-xs text-slate-400 mt-0.5">Review rent escalation clauses, maintenance responsibilities, and exit notice period before signing.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-gold-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Document Existing Defects</p>
+            <p class="text-xs text-slate-400 mt-0.5">Photograph and email existing damage to the landlord before moving in to avoid disputes during exit.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-gold-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Verify Utility Bills</p>
+            <p class="text-xs text-slate-400 mt-0.5">Ensure no outstanding electricity, water, or gas bills are pending from previous tenants.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-3 bg-navy-900 rounded-lg p-4 border border-navy-800">
+          <i data-lucide="check-circle-2" class="h-5 w-5 text-gold-500 mt-0.5 shrink-0"></i>
+          <div>
+            <p class="font-semibold text-sm">Police Verification</p>
+            <p class="text-xs text-slate-400 mt-0.5">Mandatory in Gujarat. Submit Form C at local police station within 24 hours of moving in.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="index.html" class="hover:text-gold-500">Home</a>
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="agents.html" class="hover:text-gold-500">Agents</a>
+        <a href="faq.html" class="hover:text-gold-500">FAQ</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

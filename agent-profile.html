@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Profile | SuratHomes Verified Brokers</title>
+  <meta name="description" content="View full agent profile on SuratHomes. Connect with top certified real estate agents and property brokers.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 950: '#070a13', 900: '#0b132b', 800: '#1c2541', 700: '#2b3a67' },
+            gold: { 400: '#e5c158', 500: '#d4af37', 600: '#c5a028' }
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white shadow-sm bg-white/95 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-semibold rounded-md" style="color:#C8A96A">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] flex items-center gap-1 transition-colors rounded-md hover:bg-gray-50">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5 bg-navy-900 text-white rounded"><i data-lucide="calendar" class="h-3.5 w-3.5 mr-2"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <!-- Mobile Menu Snippet Omitted for Brevity (just the basic links) -->
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="block px-3 py-2 text-sm">Home</a>
+        <a href="agents.html" class="block px-3 py-2 text-sm font-bold text-gold-500">Agents</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- BREADCRUMB -->
+  <div class="bg-white border-b border-slate-200 py-3 mt-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-500 flex items-center space-x-2">
+      <a href="index.html" class="hover:text-gold-500">Home</a>
+      <i data-lucide="chevron-right" class="h-3 w-3"></i>
+      <a href="agents.html" class="hover:text-gold-500">Agents</a>
+      <i data-lucide="chevron-right" class="h-3 w-3"></i>
+      <span class="text-navy-900 font-semibold">Agent Profile</span>
+    </div>
+  </div>
+
+  <!-- AGENT DETAIL MAIN -->
+  <section class="py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        
+        <!-- LEFT: Main content column -->
+        <div class="lg:col-span-2 space-y-8">
+          
+          <!-- Agent Header Block -->
+          <div class="bg-white rounded-xl border border-slate-200 p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-8">
+            <div class="w-40 h-40 md:w-48 md:h-48 rounded-2xl overflow-hidden shrink-0 shadow-lg border-4 border-slate-50">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Mihir Shah Agent" class="w-full h-full object-cover object-center">
+            </div>
+            <div class="flex-1 text-center md:text-left">
+              <div class="inline-block bg-gold-500 text-navy-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase mb-3">Top Agent</div>
+              <h1 class="text-3xl font-serif font-bold text-navy-900">Mihir Shah</h1>
+              <p class="text-slate-500 font-medium mt-1 mb-4">Senior Property Advisor · 12 Years Experience</p>
+              
+              <div class="flex items-center justify-center md:justify-start text-gold-400 space-x-0.5 mb-6">
+                <i data-lucide="star" class="h-5 w-5 fill-gold-400"></i>
+                <i data-lucide="star" class="h-5 w-5 fill-gold-400"></i>
+                <i data-lucide="star" class="h-5 w-5 fill-gold-400"></i>
+                <i data-lucide="star" class="h-5 w-5 fill-gold-400"></i>
+                <i data-lucide="star" class="h-5 w-5 fill-gold-400"></i>
+                <span class="text-slate-600 text-sm ml-2 font-medium">(48 Reviews)</span>
+              </div>
+              
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-left">
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Specialization</p>
+                  <p class="text-sm font-semibold text-navy-900">Luxury & NRI</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                  <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Active Listings</p>
+                  <p class="text-sm font-semibold text-navy-900">38 Properties</p>
+                </div>
+                <div class="bg-slate-50 p-3 rounded-lg border border-slate-100 col-span-2 md:col-span-1">
+                  <p class="text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-1">Languages</p>
+                  <p class="text-sm font-semibold text-navy-900">Gujarati, Hindi, English</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Block -->
+          <div class="bg-white rounded-xl border border-slate-200 p-8 shadow-sm">
+            <h2 class="text-xl font-serif font-bold text-navy-900 mb-4 pb-2 border-b border-slate-100">About Mihir Shah</h2>
+            <div class="prose prose-sm text-slate-600 max-w-none">
+              <p>With over a decade of experience in the Surat real estate market, Mihir Shah has established himself as a trusted advisor for luxury homes and NRI investments. His deep understanding of the local market dynamics, combined with a commitment to client satisfaction, has resulted in over 500 successful property transactions.</p>
+              <p>Mihir specializes in high-end residential properties in premium neighborhoods like Vesu, Piplod, and City Light. He provides end-to-end assistance, from property shortlisting and site visits to legal documentation and final handover, ensuring a seamless experience for his clients.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT: Sticky Agent Sidebar -->
+        <div class="lg:col-span-1 space-y-6">
+          <div class="sticky top-28 space-y-6">
+            
+            <!-- Contact Actions -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <h3 class="text-base font-serif font-bold text-navy-900 border-b border-slate-100 pb-3 mb-5">Contact Agent</h3>
+              <div class="space-y-3 mb-5">
+                <a href="tel:+919712045678" class="flex items-center justify-center space-x-3 text-sm py-3 px-4 bg-navy-900 text-white rounded-lg font-semibold hover:bg-navy-800 transition-colors shadow-md">
+                  <i data-lucide="phone" class="h-5 w-5 text-gold-500"></i>
+                  <span>+91 97120 45678</span>
+                </a>
+                <a href="https://wa.me/919712045678" target="_blank" class="flex items-center justify-center space-x-3 text-sm py-3 px-4 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-700 transition-colors shadow-md">
+                  <i data-lucide="message-circle" class="h-5 w-5"></i>
+                  <span>Chat on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Inquiry Form -->
+            <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-6">
+              <h3 class="text-base font-serif font-bold text-navy-900 border-b border-slate-100 pb-3 mb-5">Send a Message</h3>
+              <form class="space-y-4">
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 mb-1">Your Name</label>
+                  <input type="text" placeholder="Full Name" class="w-full text-sm border border-slate-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 mb-1">Mobile Number</label>
+                  <input type="tel" placeholder="+91" class="w-full text-sm border border-slate-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all">
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-slate-600 mb-1">Message</label>
+                  <textarea rows="3" placeholder="I would like to discuss my property requirements..." class="w-full text-sm border border-slate-200 rounded-lg px-4 py-2.5 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 resize-none transition-all"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-gold-500 hover:bg-gold-600 text-navy-950 font-bold py-3 rounded-lg text-sm uppercase tracking-wider transition-colors shadow-md">
+                  Send Message
+                </button>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-12 pb-8 border-t border-gold-alpha mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center text-xs">
+      <div class="flex items-center space-x-2 mb-4 md:mb-0">
+        <i data-lucide="home" class="h-5 w-5 text-gold-500"></i>
+        <span class="text-white font-serif font-bold">Surat<span class="text-gold-500">Homes</span></span>
+      </div>
+      <div class="flex flex-wrap gap-4 justify-center">
+        <a href="properties.html" class="hover:text-gold-500">Properties</a>
+        <a href="agents.html" class="hover:text-gold-500">Agents</a>
+        <a href="buy.html" class="hover:text-gold-500">Buy Guide</a>
+        <a href="faq.html" class="hover:text-gold-500">FAQ</a>
+        <a href="contact.html" class="hover:text-gold-500">Contact</a>
+      </div>
+      <p class="mt-4 md:mt-0">© 2026 SuratHomes. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>document.addEventListener('DOMContentLoaded', () => lucide.createIcons());</script>
+</body>
+</html>

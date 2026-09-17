@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties in Surat | SuratHomes Real Estate listings</title>
+  <meta name="description" content="Browse verified residential and commercial properties in Surat. Buy or rent flats, villas, penthouses, and showrooms in Vesu, Pal, Adajan, and Althan.">
+  
+  <!-- OG Tags -->
+  <meta property="og:title" content="Verified Properties for Sale & Rent in Surat | SuratHomes">
+  <meta property="og:description" content="Filter properties by price, BHK, location, and type. Toggle between grid and list views.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="properties.html">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: {
+              950: '#070a13',
+              900: '#0b132b',
+              800: '#1c2541',
+              700: '#2b3a67',
+              600: '#3d528f'
+            },
+            gold: {
+              400: '#e5c158',
+              500: '#d4af37',
+              600: '#c5a028'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Alpine.js CDN -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-slate-50 text-slate-900 pt-20" x-data="{ 
+  mobileFiltersOpen: false, 
+  layoutMode: 'grid',
+  favorites: [],
+  currentPage: 1,
+  toggleFavorite(id) {
+    if (this.favorites.includes(id)) {
+      this.favorites = this.favorites.filter(x => x !== id);
+    } else {
+      this.favorites.push(id);
+    }
+  }
+}">
+
+  <!-- HEADER NAVBAR -->
+  <header x-data="{ mobileMenuOpen: false, activeDropdown: null }" class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 rounded-lg flex items-center justify-center" style="background:#C8A96A;box-shadow:0 4px 12px rgba(200,169,106,.35)">
+            <i data-lucide="home" class="h-4 w-4 text-white"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-[#0F172A]">Surat<span style="color:#C8A96A">Homes</span></span>
+        </a>
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Home</a>
+          <a href="properties.html" class="px-4 py-2 text-sm font-semibold rounded-md" style="color:#C8A96A">Properties</a>
+          <a href="projects.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">Agents</a>
+          <div class="relative" @mouseenter="activeDropdown='guides'" @mouseleave="activeDropdown=null">
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] flex items-center gap-1 transition-colors rounded-md hover:bg-gray-50">Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="activeDropdown==='guides'?'rotate-180':''"></i></button>
+            <div x-show="activeDropdown==='guides'" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="home" class="h-4 w-4" style="color:#C8A96A"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="key" class="h-4 w-4" style="color:#C8A96A"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="help-circle" class="h-4 w-4" style="color:#C8A96A"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 font-medium"><i data-lucide="info" class="h-4 w-4" style="color:#C8A96A"></i>About Us</a>
+            </div>
+          </div>
+          <a href="about.html" class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-[#0F172A] transition-colors rounded-md hover:bg-gray-50">About Us</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5"><i data-lucide="calendar" class="h-3.5 w-3.5"></i>Schedule Visit</a>
+          <button @click="mobileMenuOpen = !mobileMenuOpen" class="lg:hidden p-2 rounded-lg text-[#0F172A]"><i data-lucide="menu" class="h-6 w-6" x-show="!mobileMenuOpen"></i><i data-lucide="x" class="h-6 w-6" x-show="mobileMenuOpen"></i></button>
+        </div>
+      </div>
+    </div>
+    <div x-show="mobileMenuOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold bg-amber-50" style="color:#C8A96A">Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">Rent Guide</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">FAQs</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">About Us</a>
+        <div class="pt-3 border-t border-gray-100"><a href="contact.html" class="btn-primary w-full justify-center"><i data-lucide="calendar" class="h-4 w-4"></i>Schedule Visit</a></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <span class="page-hero-tag">Verified Listings</span>
+      <h1 class="page-hero-title">Properties in Surat</h1>
+      <div class="page-hero-underline"></div>
+      <p class="page-hero-sub">Browse 2,500+ verified residential and commercial properties. Filter by location, type, price, and BHK to find your perfect match.</p>
+    </div>
+  </section>
+
+  <!-- MAIN LISTING COMPONENT -->
+  <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col lg:flex-row gap-8">
+      
+      <!-- DESKTOP FILTER SIDEBAR (Width 1/4) -->
+      <aside class="hidden lg:block w-1/4 shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 p-6 self-start">
+        <h3 class="text-lg font-serif font-bold text-navy-900 border-b border-slate-100 pb-3 mb-4">Advanced Filters</h3>
+        
+        <form class="space-y-6">
+          <!-- Search input -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Search Keyword</label>
+            <div class="relative">
+              <input type="text" placeholder="e.g. Penthouse, Vesu..." class="w-full text-sm border border-slate-300 rounded px-3 py-2.5 pl-9 focus:outline-none focus:border-gold-500">
+              <i data-lucide="search" class="absolute left-3 top-3 h-4 w-4 text-slate-400"></i>
+            </div>
+          </div>
+
+          <!-- Location selection -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Neighborhood</label>
+            <select class="w-full text-sm border border-slate-300 rounded px-3 py-2.5 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+              <option value="">All Locations</option>
+              <option value="vesu">Vesu</option>
+              <option value="adajan">Adajan</option>
+              <option value="pal">Pal</option>
+              <option value="piplod">Piplod</option>
+              <option value="althan">Althan</option>
+              <option value="dumas">Dumas Road</option>
+              <option value="airport">Airport Area</option>
+            </select>
+          </div>
+
+          <!-- Property Type selection -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Property Type</label>
+            <select class="w-full text-sm border border-slate-300 rounded px-3 py-2.5 bg-white focus:outline-none focus:border-gold-500 cursor-pointer">
+              <option value="">Any Type</option>
+              <option value="apartment">Apartment</option>
+              <option value="villa">Bungalow & Villa</option>
+              <option value="penthouse">Penthouse</option>
+              <option value="commercial">Office Space</option>
+              <option value="plots">Land Plots</option>
+            </select>
+          </div>
+
+          <!-- Price Range Slider -->
+          <div x-data="{ price: 5 }">
+            <div class="flex justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+              <span>Max Price</span>
+              <span class="text-gold-600 font-bold" x-text="'₹' + price + ' Cr'"></span>
+            </div>
+            <input type="range" min="1" max="15" step="0.5" x-model="price" class="w-full accent-gold-500 cursor-pointer">
+            <div class="flex justify-between text-[10px] text-slate-400 mt-1">
+              <span>₹1 Cr</span>
+              <span>₹15 Cr</span>
+            </div>
+          </div>
+
+          <!-- BHK selection -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Bedrooms (BHK)</label>
+            <div class="grid grid-cols-4 gap-2">
+              <button type="button" class="py-2 border border-slate-200 rounded text-xs font-semibold hover:border-gold-500 hover:text-gold-600 focus:bg-gold-500 focus:text-navy-950 focus:border-gold-500">1 BHK</button>
+              <button type="button" class="py-2 border border-slate-200 rounded text-xs font-semibold hover:border-gold-500 hover:text-gold-600 focus:bg-gold-500 focus:text-navy-950 focus:border-gold-500">2 BHK</button>
+              <button type="button" class="py-2 border border-slate-200 rounded text-xs font-semibold hover:border-gold-500 hover:text-gold-600 focus:bg-gold-500 focus:text-navy-950 focus:border-gold-500">3 BHK</button>
+              <button type="button" class="py-2 border border-slate-200 rounded text-xs font-semibold hover:border-gold-500 hover:text-gold-600 focus:bg-gold-500 focus:text-navy-950 focus:border-gold-500">4+ BHK</button>
+            </div>
+          </div>
+
+          <!-- Ready Possession Toggle -->
+          <div class="flex items-center justify-between border-t border-slate-100 pt-4">
+            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Ready to Move</span>
+            <button type="button" x-data="{ on: true }" @click="on = !on" :class="on ? 'bg-emerald-600' : 'bg-slate-300'" class="relative inline-flex h-6 w-11 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 focus:outline-none">
+              <span :class="on ? 'translate-x-5' : 'translate-x-0'" class="pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200"></span>
+            </button>
+          </div>
+
+          <button type="submit" class="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold py-3 px-4 rounded text-xs uppercase tracking-wider transition-colors">
+            Apply Filters
+          </button>
+        </form>
+      </aside>
+
+      <!-- PROPERTY INDEX VIEW (Width 3/4) -->
+      <main class="w-full lg:w-3/4">
+        
+        <!-- Controls Bar -->
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 mb-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <div class="text-xs text-slate-500 font-semibold uppercase tracking-wider">
+            Showing <span class="text-navy-900" x-text="`${(currentPage - 1) * 2 + 1}-${Math.min(currentPage * 2, 6)} of 6`"></span> Premium Listings
+          </div>
+          
+          <div class="flex items-center space-x-4">
+            <!-- Sort dropdown -->
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-slate-500 font-semibold uppercase tracking-wider">Sort:</span>
+              <select class="text-xs border border-slate-300 rounded px-2.5 py-1.5 focus:outline-none cursor-pointer bg-white">
+                <option value="featured">Featured First</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="newest">Recently Added</option>
+              </select>
+            </div>
+            
+            <!-- List/Grid toggler -->
+            <div class="flex items-center border border-slate-200 rounded overflow-hidden">
+              <button @click="layoutMode = 'grid'" :class="layoutMode === 'grid' ? 'bg-navy-900 text-white' : 'bg-white text-slate-500 hover:text-navy-900'" class="p-2 transition-colors">
+                <i data-lucide="layout-grid" class="h-4.5 w-4.5"></i>
+              </button>
+              <button @click="layoutMode = 'list'" :class="layoutMode === 'list' ? 'bg-navy-900 text-white' : 'bg-white text-slate-500 hover:text-navy-900'" class="p-2 transition-colors">
+                <i data-lucide="menu" class="h-4.5 w-4.5"></i>
+              </button>
+            </div>
+
+            <!-- Mobile filter button -->
+            <button @click="mobileFiltersOpen = true" class="lg:hidden bg-gold-500 text-navy-950 px-4 py-2 rounded text-xs font-bold uppercase tracking-wider flex items-center space-x-1.5 hover:bg-gold-600 transition-colors">
+              <i data-lucide="sliders-horizontal" class="h-4 w-4"></i>
+              <span>Filters</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Property Cards Layout container -->
+        <div :class="layoutMode === 'grid' ? 'grid grid-cols-1 md:grid-cols-2 gap-6' : 'space-y-6'">
+          
+          <!-- Listing 1 -->
+          <div x-show="currentPage === 1" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="The Royal Palms Penthouse" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Featured</span>
+              <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Sale</span>
+              <button @click="toggleFavorite(1)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(1) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Penthouse</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹4.85 Cr</span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">The Royal Palms Penthouse</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Vesu VIP Road, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Premium luxury penthouse offering panoramic skyline view, private terrace, 4 master bedrooms, and customized modular layout details.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>4 BHK</strong> Bed</div>
+                <div class="py-1 border-r border-slate-100"><strong>4 Bath</strong> Bath</div>
+                <div class="py-1"><strong>4,500</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 2 -->
+          <div x-show="currentPage === 1" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Riverfront Signature Villa" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Featured</span>
+              <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Sale</span>
+              <button @click="toggleFavorite(2)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(2) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Luxury Villa</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹7.20 Cr</span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">Riverfront Signature Villa</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Piplod River Road, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Stunning tapestry view of Tapi River. Landscaped private backyard, modular kitchen, individual pool, gym and secure boundary parameters.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>5 BHK</strong> Bed</div>
+                <div class="py-1 border-r border-slate-100"><strong>6 Bath</strong> Bath</div>
+                <div class="py-1"><strong>6,200</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 3 -->
+          <div x-show="currentPage === 2" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Pal Crest Heights" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Premium</span>
+              <span class="absolute top-4 right-4 bg-navy-800 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Rent</span>
+              <button @click="toggleFavorite(3)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(3) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Apartment</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹45,000<span class="text-xs font-normal text-slate-500">/mo</span></span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">Pal Crest Heights Apartment</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Anand Mahal Road, Pal, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Fully furnished family home setup with modular design layouts. Highly residential district layout with direct access to supermarkets.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>3 BHK</strong> Bed</div>
+                <div class="py-1 border-r border-slate-100"><strong>3 Bath</strong> Bath</div>
+                <div class="py-1"><strong>2,100</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 4 -->
+          <div x-show="currentPage === 2" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Shreeji Corporate Office" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Premium</span>
+              <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Sale</span>
+              <button @click="toggleFavorite(4)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(4) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Commercial</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹1.25 Cr</span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">Shreeji Corporate Office</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Althan Canal Road, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Fully partition-configured office with dedicated server room, cafeteria lobby, reception, and separate parking allocation slots.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>Office</strong> Type</div>
+                <div class="py-1 border-r border-slate-100"><strong>2 Park</strong> Space</div>
+                <div class="py-1"><strong>1,800</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 5 -->
+          <div x-show="currentPage === 3" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80" alt="Gokul Gated Bungalow" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Elite</span>
+              <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Sale</span>
+              <button @click="toggleFavorite(5)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(5) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Bungalow</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹3.40 Cr</span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">Gokul Gated Bungalow Complex</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Adajan, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Elegant 4 BHK independent villa set inside a secure gated society structure. Standard marble fittings, modular kitchen and water supply.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>4 BHK</strong> Bed</div>
+                <div class="py-1 border-r border-slate-100"><strong>4 Bath</strong> Bath</div>
+                <div class="py-1"><strong>3,500</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Listing 6 -->
+          <div x-show="currentPage === 3" x-transition :class="layoutMode === 'grid' ? 'flex flex-col' : 'flex flex-col md:flex-row'" class="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+            <div :class="layoutMode === 'grid' ? 'h-64 w-full' : 'h-64 md:h-auto md:w-2/5 shrink-0'" class="relative">
+              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Sangini Showroom" class="w-full h-full object-cover">
+              <span class="absolute top-4 left-4 bg-navy-950/95 text-gold-500 text-[10px] font-bold px-2 py-0.5 rounded border border-gold-alpha uppercase tracking-wider">Hot</span>
+              <span class="absolute top-4 right-4 bg-emerald-600 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">For Sale</span>
+              <button @click="toggleFavorite(6)" class="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-md text-slate-600 hover:bg-slate-100">
+                <i data-lucide="heart" class="h-4.5 w-4.5" :class="favorites.includes(6) ? 'fill-red-500 text-red-500' : ''"></i>
+              </button>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex justify-between items-center mb-2">
+                  <span class="text-xs font-semibold text-gold-600 uppercase tracking-wider">Showroom</span>
+                  <span class="text-2xl font-serif font-bold text-navy-900">₹2.10 Cr</span>
+                </div>
+                <h3 class="text-xl font-serif font-semibold text-navy-900 mb-2 hover:text-gold-600 transition-colors">
+                  <a href="property-details.html">Sangini Commercial Showroom</a>
+                </h3>
+                <p class="text-slate-500 flex items-center text-xs mb-3">
+                  <i data-lucide="map-pin" class="h-3.5 w-3.5 text-gold-500 mr-1 shrink-0"></i>
+                  Canal Road, Surat
+                </p>
+                <p class="text-slate-600 text-sm mb-4 leading-relaxed line-clamp-2">
+                  Double-height high-visibility showroom space directly overlooking the arterial canal route corridor. Fully ready for fit-out.
+                </p>
+              </div>
+              <div class="border-t border-slate-100 pt-4 grid grid-cols-3 gap-2 text-center text-xs text-slate-500">
+                <div class="py-1 border-r border-slate-100"><strong>Retail</strong> Type</div>
+                <div class="py-1 border-r border-slate-100"><strong>High</strong> View</div>
+                <div class="py-1"><strong>1,200</strong> sq.ft</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+          <nav class="flex space-x-1.5">
+            <a href="#" @click.prevent="if(currentPage > 1) currentPage--" :class="currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:border-gold-500 hover:text-gold-600'" class="px-3.5 py-2 border border-slate-200 bg-white rounded text-slate-500 transition-colors text-xs font-bold uppercase tracking-wider">Prev</a>
+            <a href="#" @click.prevent="currentPage = 1" :class="currentPage === 1 ? 'border-gold-500 bg-gold-500 text-navy-950' : 'border-slate-200 bg-white text-slate-500 hover:border-gold-500 hover:text-gold-600'" class="px-3.5 py-2 border rounded text-xs font-bold transition-colors">1</a>
+            <a href="#" @click.prevent="currentPage = 2" :class="currentPage === 2 ? 'border-gold-500 bg-gold-500 text-navy-950' : 'border-slate-200 bg-white text-slate-500 hover:border-gold-500 hover:text-gold-600'" class="px-3.5 py-2 border rounded text-xs font-bold transition-colors">2</a>
+            <a href="#" @click.prevent="currentPage = 3" :class="currentPage === 3 ? 'border-gold-500 bg-gold-500 text-navy-950' : 'border-slate-200 bg-white text-slate-500 hover:border-gold-500 hover:text-gold-600'" class="px-3.5 py-2 border rounded text-xs font-bold transition-colors">3</a>
+            <a href="#" @click.prevent="if(currentPage < 3) currentPage++" :class="currentPage === 3 ? 'opacity-50 cursor-not-allowed' : 'hover:border-gold-500 hover:text-gold-600'" class="px-3.5 py-2 border border-slate-200 bg-white rounded text-slate-500 transition-colors text-xs font-bold uppercase tracking-wider">Next</a>
+          </nav>
+        </div>
+      </main>
+
+    </div>
+  </section>
+
+  <!-- MOBILE FILTER SLIDEOUT DRAWER -->
+  <div x-show="mobileFiltersOpen" class="fixed inset-0 z-50 overflow-hidden lg:hidden" style="display: none;">
+    <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity" @click="mobileFiltersOpen = false"></div>
+    <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+      <div class="w-screen max-w-md bg-white p-6 shadow-xl flex flex-col justify-between overflow-y-auto">
+        <div>
+          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+            <h3 class="text-lg font-serif font-bold text-navy-900">Filters</h3>
+            <button @click="mobileFiltersOpen = false" class="text-slate-400 hover:text-slate-600">
+              <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+          </div>
+          
+          <form class="space-y-6">
+            <!-- Search Keyword -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Keyword</label>
+              <input type="text" placeholder="e.g. flat, duplex..." class="w-full text-sm border border-slate-300 rounded px-3 py-2">
+            </div>
+
+            <!-- Location -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Location</label>
+              <select class="w-full text-sm border border-slate-300 rounded px-3 py-2 bg-white">
+                <option value="">All Locations</option>
+                <option value="vesu">Vesu</option>
+                <option value="adajan">Adajan</option>
+                <option value="pal">Pal</option>
+              </select>
+            </div>
+
+            <!-- Budget selection slider -->
+            <div x-data="{ price: 4 }">
+              <div class="flex justify-between text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                <span>Max Budget</span>
+                <span class="text-gold-600 font-bold" x-text="'₹' + price + ' Cr'"></span>
+              </div>
+              <input type="range" min="1" max="15" step="0.5" x-model="price" class="w-full accent-gold-500">
+            </div>
+            
+            <button type="submit" @click="mobileFiltersOpen = false" class="w-full bg-navy-900 text-white font-bold py-3 rounded text-xs uppercase tracking-wider">
+              Apply Filters
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-navy-950 text-gray-400 pt-16 pb-8 border-t border-gold-alpha">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+      <div>
+        <div class="flex items-center space-x-2 mb-4">
+          <i data-lucide="home" class="h-6 w-6 text-gold-500"></i>
+          <span class="text-xl font-bold font-serif text-white tracking-wide">Surat<span class="text-gold-500">Homes</span></span>
+        </div>
+        <p class="text-sm mb-6 leading-relaxed">
+          Connecting buyers, builders, and brokers with Surat's finest residential & commercial properties since 2018. Experience premium Gujarat real estate.
+        </p>
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-gold-500"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+          <a href="#" class="hover:text-gold-500"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4 tracking-wider">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="properties.html" class="hover:text-gold-500 transition-colors">Search Listings</a></li>
+          <li><a href="projects.html" class="hover:text-gold-500 transition-colors">Featured Projects</a></li>
+          <li><a href="agents.html" class="hover:text-gold-500 transition-colors">Meet Our Agents</a></li>
+          <li><a href="buy.html" class="hover:text-gold-500 transition-colors">Buyer's Roadmap</a></li>
+          <li><a href="rent.html" class="hover:text-gold-500 transition-colors">Rental Catalog</a></li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4 tracking-wider">Our Office</h4>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start space-x-3">
+            <i data-lucide="map-pin" class="h-5 w-5 text-gold-500 shrink-0 mt-0.5"></i>
+            <span>402, Golden Icon Tower, Dumas Road, Piplod, Surat, Gujarat - 395007</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <i data-lucide="phone" class="h-5 w-5 text-gold-500 shrink-0"></i>
+            <span>+91 261 405 8899</span>
+          </li>
+          <li class="flex items-center space-x-3">
+            <i data-lucide="mail" class="h-5 w-5 text-gold-500 shrink-0"></i>
+            <span>info@surathomes.com</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h4 class="text-white font-serif font-semibold text-lg mb-4 tracking-wider">Newsletter</h4>
+        <p class="text-sm mb-4">Subscribe for the latest listings and prime property investments in Surat.</p>
+        <form class="flex flex-col space-y-2">
+          <input type="email" placeholder="Your email address" class="px-4 py-2.5 rounded bg-navy-900 border border-gold-alpha text-white placeholder-gray-500 focus:outline-none focus:border-gold-500 text-sm">
+          <button type="submit" class="bg-gold-500 hover:bg-gold-600 text-navy-950 font-semibold py-2 px-4 rounded text-sm transition-colors btn-gold-hover">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-navy-800 flex flex-col md:flex-row justify-between items-center text-xs">
+      <p>© 2026 SuratHomes. All rights reserved. RERA Registered No: PR/GJ/SURAT/395007.</p>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="faq.html" class="hover:text-gold-500">Privacy Policy</a>
+        <a href="faq.html" class="hover:text-gold-500">Terms of Service</a>
+        <a href="faq.html" class="hover:text-gold-500">RERA Disclosures</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lucide Script init -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

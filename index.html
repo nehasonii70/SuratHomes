@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SuratHomes | Surat's Premier Luxury Real Estate Platform</title>
+  <meta name="description" content="Discover Surat's finest luxury properties — premium villas, penthouses, and commercial spaces in Vesu, Adajan, Pal, and Piplod. RERA verified listings with dedicated expert guidance.">
+  <meta property="og:title" content="SuratHomes | Surat's Premier Luxury Real Estate">
+  <meta property="og:description" content="Discover Surat's finest luxury properties with verified listings, virtual tours, and expert advisors.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary:   '#0F172A',
+            secondary: '#1E293B',
+            accent:    '#C8A96A',
+            'accent-light': '#E2C98A',
+            'accent-dark':  '#A88A4A',
+            surface:   '#FFFFFF',
+            'text-secondary': '#6B7280',
+            success:   '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .hero-bg {
+      background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=85');
+      background-size: cover;
+      background-position: center;
+    }
+    .property-img-1 { background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80'); background-size:cover; background-position:center; }
+    .property-img-2 { background-image: url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=600&q=80'); background-size:cover; background-position:center; }
+    .property-img-3 { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=600&q=80'); background-size:cover; background-position:center; }
+
+    /* Investment section bg pattern */
+    .invest-bg {
+      background-color: #F8FAFC;
+      background-image: radial-gradient(circle at 20% 50%, rgba(200,169,106,0.06) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(15,23,42,0.04) 0%, transparent 40%);
+    }
+
+    /* Market section dark */
+    .market-bg {
+      background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+    }
+
+    /* Divider ornament */
+    .ornament-divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ornament-divider::before,
+    .ornament-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #C8A96A, transparent);
+    }
+  </style>
+</head>
+
+<body class="bg-[#F8FAFC]" x-data="{
+  scrolled: false,
+  mobileOpen: false,
+  propertiesMenuOpen: false,
+  currentTestimonial: 0,
+  statsAnimated: false,
+  testimonials: [
+    { name: 'Rajesh & Priya Shah', role: 'Homeowners, Vesu', text: 'SuratHomes found us our dream 4 BHK penthouse in half the time we expected. The team was professional, the RERA verification gave us complete peace of mind, and the virtual tour saved us multiple site visits. A truly world-class experience.', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=80&q=80' },
+    { name: 'Vikram Mehta', role: 'NRI Investor, London', text: 'Managing property investments in Surat from abroad used to be stressful. SuratHomes changed that completely. My dedicated advisor handled everything — legal verification, registry, and now rental management. I cannot recommend them enough.', avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=80&q=80' },
+    { name: 'Meena Desai', role: 'Business Owner, Adajan', text: 'I needed a premium commercial showroom on Canal Road with specific layout requirements. SuratHomes not only found exactly what I described within 10 days, but also negotiated a price 12% below market rate. Outstanding service.', avatar: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=80&q=80' }
+  ]
+}" class="pt-20">
+
+
+  <!-- ══════════════════════════ NAVBAR ══════════════════════════ -->
+  <header class="fixed top-0 left-0 w-full z-50 nav-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center space-x-2.5 flex-shrink-0">
+          <div class="w-9 h-9 bg-accent rounded-lg flex items-center justify-center flex-shrink-0" style="box-shadow: 0 4px 12px rgba(200,169,106,0.35)">
+            <i data-lucide="home" class="h-4 w-4 text-primary"></i>
+          </div>
+          <span class="text-xl font-bold tracking-tight text-primary">
+            Surat<span class="text-accent">Homes</span>
+          </span>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="index.html" class="px-4 py-2 rounded-md text-sm font-semibold transition-colors" style="color: var(--accent)">Home</a>
+
+          <!-- Properties Mega Menu -->
+          <div x-data="{ open: false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
+            <button class="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1 text-gray-700 hover:text-primary transition-colors">
+              Properties <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+            <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                 x-transition:enter-start="opacity-0 translate-y-2"
+                 x-transition:enter-end="opacity-100 translate-y-0"
+                 class="mega-menu">
+              <div class="col-span-3 mb-3 pb-3 border-b border-gray-100">
+                <span class="text-xs font-bold uppercase tracking-[0.15em] text-text-secondary">Browse by Category</span>
+              </div>
+              <a href="properties.html?type=apartment" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="building-2" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">Apartments</div>
+                  <div class="mega-menu-sub">1–4 BHK Premium Flats</div>
+                </div>
+              </a>
+              <a href="properties.html?type=villa" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="home" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">Villas & Bungalows</div>
+                  <div class="mega-menu-sub">Gated Estates & Gardens</div>
+                </div>
+              </a>
+              <a href="properties.html?type=penthouse" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="crown" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">Penthouses</div>
+                  <div class="mega-menu-sub">Sky Residences & Sky Decks</div>
+                </div>
+              </a>
+              <a href="properties.html?type=commercial" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="briefcase" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">Commercial</div>
+                  <div class="mega-menu-sub">Offices, Showrooms & Shops</div>
+                </div>
+              </a>
+              <a href="properties.html?type=plot" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="map" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">Plots & Land</div>
+                  <div class="mega-menu-sub">NA & Residential Plots</div>
+                </div>
+              </a>
+              <a href="rent.html" class="mega-menu-item">
+                <div class="mega-menu-icon"><i data-lucide="key" class="h-4 w-4 text-accent"></i></div>
+                <div>
+                  <div class="mega-menu-label">For Rent</div>
+                  <div class="mega-menu-sub">Premium Rental Homes</div>
+                </div>
+              </a>
+              <div class="col-span-3 mt-3 pt-3 border-t border-gray-100 flex items-center justify-between">
+                <span class="text-xs text-text-secondary">2,500+ verified listings across Surat</span>
+                <a href="properties.html" class="text-xs font-bold text-accent hover:text-accent-dark transition-colors flex items-center gap-1">View All <i data-lucide="arrow-right" class="h-3 w-3"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <a href="projects.html" class="px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary transition-colors">New Projects</a>
+          <a href="agents.html" class="px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-primary transition-colors">Agents</a>
+
+          <!-- Resources Dropdown -->
+          <div x-data="{ open: false }" class="relative" @mouseenter="open=true" @mouseleave="open=false">
+            <button class="px-4 py-2 rounded-md text-sm font-medium flex items-center gap-1 text-gray-700 hover:text-primary transition-colors">
+              Resources <i data-lucide="chevron-down" class="h-3.5 w-3.5 transition-transform" :class="open ? 'rotate-180' : ''"></i>
+            </button>
+            <div x-show="open" x-transition class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50">
+              <a href="buy.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary font-medium"><i data-lucide="home" class="h-4 w-4 text-accent"></i>Buy Guide</a>
+              <a href="rent.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary font-medium"><i data-lucide="key" class="h-4 w-4 text-accent"></i>Rent Guide</a>
+              <a href="faq.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary font-medium"><i data-lucide="help-circle" class="h-4 w-4 text-accent"></i>FAQs</a>
+              <a href="about.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary font-medium"><i data-lucide="info" class="h-4 w-4 text-accent"></i>About Us</a>
+            </div>
+          </div>
+        </nav>
+
+        <!-- CTA + Mobile Toggle -->
+        <div class="flex items-center gap-3">
+          <a href="contact.html" class="hidden lg:inline-flex btn-primary text-xs py-2.5 px-5">
+            <i data-lucide="calendar" class="h-3.5 w-3.5"></i>
+            Schedule Visit
+          </a>
+          <button @click="mobileOpen = !mobileOpen" class="lg:hidden p-2 rounded-lg text-primary">
+            <i data-lucide="menu" class="h-6 w-6" x-show="!mobileOpen"></i>
+            <i data-lucide="x" class="h-6 w-6" x-show="mobileOpen"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="mobileOpen" x-transition class="lg:hidden bg-white border-t border-gray-100 shadow-xl">
+      <div class="px-6 py-5 space-y-1">
+        <a href="index.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-semibold text-accent bg-accent/5">Home</a>
+        <a href="properties.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="building-2" class="h-4 w-4 text-accent"></i>Properties</a>
+        <a href="projects.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="rocket" class="h-4 w-4 text-accent"></i>New Projects</a>
+        <a href="agents.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="users" class="h-4 w-4 text-accent"></i>Agents</a>
+        <a href="buy.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="home" class="h-4 w-4 text-accent"></i>Buy Guide</a>
+        <a href="rent.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="key" class="h-4 w-4 text-accent"></i>Rent Guide</a>
+        <a href="about.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="info" class="h-4 w-4 text-accent"></i>About Us</a>
+        <a href="faq.html" class="flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50"><i data-lucide="help-circle" class="h-4 w-4 text-accent"></i>FAQs</a>
+        <div class="pt-3 border-t border-gray-100">
+          <a href="contact.html" class="btn-primary w-full justify-center">
+            <i data-lucide="calendar" class="h-4 w-4"></i>
+            Schedule Visit
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════ HERO ══════════════════════════ -->
+  <section class="hero-bg flex items-center relative" style="min-height: calc(100vh - 80px)" id="hero">
+    <div class="hero-overlay absolute inset-0"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 py-32 lg:py-0 w-full">
+      <div class="max-w-2xl fade-in-up">
+        <span class="inline-flex items-center gap-2 text-accent text-xs font-bold tracking-[0.2em] uppercase mb-6">
+          <span class="w-8 h-px bg-accent"></span>
+          Surat's Most Trusted Real Estate Platform
+          <span class="w-8 h-px bg-accent"></span>
+        </span>
+        <h1 class="text-white text-5xl lg:text-7xl font-bold leading-[1.08] mb-6 serif">
+          Find Your<br>
+          <span class="text-accent">Perfect</span><br>
+          Property
+        </h1>
+        <p class="text-white/65 text-lg leading-relaxed mb-10 max-w-lg">
+          Discover luxury villas, premium apartments, and investment-grade commercial properties across Surat's most sought-after neighbourhoods.
+        </p>
+
+        <!-- Glass Search Box -->
+        <div class="glass rounded-2xl p-5">
+          <div x-data="{ tab: 'buy' }" class="space-y-4">
+            <div class="flex gap-2 flex-wrap">
+              <button @click="tab = 'buy'" :class="tab === 'buy' ? 'bg-accent text-primary shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'" class="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all">Buy</button>
+              <button @click="tab = 'rent'" :class="tab === 'rent' ? 'bg-accent text-primary shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'" class="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all">Rent</button>
+              <button @click="tab = 'projects'" :class="tab === 'projects' ? 'bg-accent text-primary shadow-md' : 'text-white/60 hover:text-white hover:bg-white/10'" class="px-5 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all">New Projects</button>
+            </div>
+            <form action="properties.html" method="GET" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <input type="hidden" name="intent" :value="tab">
+              <select name="location" class="input-luxury">
+                <option value="">All Locations</option>
+                <option>Vesu</option><option>Adajan</option><option>Pal</option>
+                <option>Piplod</option><option>Althan</option><option>Dumas Road</option>
+              </select>
+              <select name="type" class="input-luxury">
+                <option value="">Property Type</option>
+                <option>Apartment</option><option>Villa & Bungalow</option>
+                <option>Penthouse</option><option>Commercial</option><option>Plots</option>
+              </select>
+              <button type="submit" class="btn-primary justify-center w-full">
+                <i data-lucide="search" class="h-4 w-4"></i>
+                Search
+              </button>
+            </form>
+            <!-- Quick Chips -->
+            <div class="flex flex-wrap gap-2 pt-1">
+              <span class="text-white/40 text-xs font-semibold uppercase tracking-wider self-center mr-1">Popular:</span>
+              <a href="properties.html?location=vesu" class="text-xs text-white/70 hover:text-accent border border-white/15 hover:border-accent/60 px-3 py-1.5 rounded-full transition-all hover:bg-white/5">Vesu Luxury</a>
+              <a href="properties.html?type=penthouse" class="text-xs text-white/70 hover:text-accent border border-white/15 hover:border-accent/60 px-3 py-1.5 rounded-full transition-all hover:bg-white/5">Penthouses</a>
+              <a href="properties.html?type=villa" class="text-xs text-white/70 hover:text-accent border border-white/15 hover:border-accent/60 px-3 py-1.5 rounded-full transition-all hover:bg-white/5">Villas</a>
+              <a href="projects.html" class="text-xs text-white/70 hover:text-accent border border-white/15 hover:border-accent/60 px-3 py-1.5 rounded-full transition-all hover:bg-white/5">New Launches</a>
+              <a href="properties.html?type=commercial" class="text-xs text-white/70 hover:text-accent border border-white/15 hover:border-accent/60 px-3 py-1.5 rounded-full transition-all hover:bg-white/5">Commercial</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Animated Floating Stats -->
+      <div class="absolute bottom-16 right-8 hidden xl:grid grid-cols-2 gap-3 w-80" id="hero-stats">
+        <div class="stat-chip text-center fade-in-up delay-200">
+          <p class="text-3xl font-bold text-white serif counter-value" data-target="2500" data-suffix="+">2,500+</p>
+          <p class="text-white/50 text-xs font-semibold uppercase tracking-wider mt-1">Verified Listings</p>
+        </div>
+        <div class="stat-chip text-center fade-in-up delay-300">
+          <p class="text-3xl font-bold text-white serif counter-value" data-target="1200" data-suffix="+">1,200+</p>
+          <p class="text-white/50 text-xs font-semibold uppercase tracking-wider mt-1">Happy Families</p>
+        </div>
+        <div class="stat-chip text-center fade-in-up delay-400">
+          <p class="text-3xl font-bold text-white serif counter-value" data-target="45" data-suffix="+">45+</p>
+          <p class="text-white/50 text-xs font-semibold uppercase tracking-wider mt-1">Expert Agents</p>
+        </div>
+        <div class="stat-chip text-center fade-in-up delay-500">
+          <p class="text-3xl font-bold text-white serif">₹1,200 Cr</p>
+          <p class="text-white/50 text-xs font-semibold uppercase tracking-wider mt-1">Transactions Done</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 fade-in delay-700">
+      <span class="text-white/40 text-xs tracking-[0.2em] uppercase">Scroll</span>
+      <div class="w-px h-12 bg-gradient-to-b from-white/40 to-transparent"></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ FEATURED PROPERTIES ══════════════════════════ -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div class="reveal">
+          <span class="section-tag">Curated Selection</span>
+          <h2 class="section-heading">Featured Luxury Properties</h2>
+          <span class="accent-line"></span>
+          <p class="section-sub mt-3">Hand-picked by our senior advisors — only the finest make this list.</p>
+        </div>
+        <a href="properties.html" class="btn-outline-accent mt-6 md:mt-0 reveal reveal-delay-2">
+          View All Listings
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Featured Large Card -->
+        <div class="lg:col-span-2 card-property reveal" x-data="{ liked: false }">
+          <div class="card-img relative h-80">
+            <div class="property-img-1 w-full h-full"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute top-5 left-5 flex gap-2">
+              <span class="badge badge-featured">Featured</span>
+              <span class="badge badge-sale">For Sale</span>
+            </div>
+            <button @click="liked = !liked" class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white transition-all group">
+              <i data-lucide="heart" class="h-4.5 w-4.5 transition-colors" :class="liked ? 'text-red-500 fill-red-500' : 'text-white group-hover:text-gray-700'"></i>
+            </button>
+            <div class="absolute bottom-6 left-6 text-white">
+              <p class="text-3xl font-bold serif">₹4.85 Crore</p>
+              <p class="text-white/70 text-sm mt-1">₹10,777 per sq.ft</p>
+            </div>
+          </div>
+          <div class="p-7">
+            <span class="text-accent text-xs font-bold uppercase tracking-wider">Penthouse</span>
+            <h3 class="text-xl font-bold text-primary mt-1.5 mb-2 serif">
+              <a href="property-details.html" class="hover:text-accent transition-colors">The Royal Palms Penthouse</a>
+            </h3>
+            <p class="text-text-secondary text-sm flex items-center gap-1.5 mb-5">
+              <i data-lucide="map-pin" class="h-4 w-4 text-accent flex-shrink-0"></i>
+              Vesu VIP Road, Surat — RERA: P01RA0002456
+            </p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-6">Sweeping city panoramas from a 15th-floor private terrace. Four master suites, bespoke Italian marble interiors, home automation, and two dedicated parking levels.</p>
+            <div class="flex items-center justify-between border-t border-gray-100 pt-5">
+              <div class="flex items-center gap-5 text-sm text-gray-600">
+                <span class="flex items-center gap-1.5"><i data-lucide="bed-double" class="h-4 w-4 text-accent"></i>4 BHK</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="bath" class="h-4 w-4 text-accent"></i>4 Bath</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="maximize" class="h-4 w-4 text-accent"></i>4,500 sq.ft</span>
+                <span class="flex items-center gap-1.5 hidden sm:flex"><i data-lucide="car" class="h-4 w-4 text-accent"></i>2 Parking</span>
+              </div>
+              <a href="property-details.html" class="btn-dark text-xs py-2.5 px-5">View Details</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Two Stacked Cards -->
+        <div class="flex flex-col gap-6">
+          <div class="card-property flex-1 reveal reveal-delay-2" x-data="{ liked: false }">
+            <div class="card-img relative h-52">
+              <div class="property-img-2 w-full h-full"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="badge badge-luxury">Luxury</span>
+                <span class="badge badge-sale">For Sale</span>
+              </div>
+              <button @click="liked = !liked" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white transition-all group">
+                <i data-lucide="heart" class="h-3.5 w-3.5" :class="liked ? 'text-red-500 fill-red-500' : 'text-white group-hover:text-gray-700'"></i>
+              </button>
+              <div class="absolute bottom-4 left-4">
+                <p class="text-xl font-bold text-white serif">₹7.20 Cr</p>
+              </div>
+            </div>
+            <div class="p-5">
+              <span class="text-accent text-xs font-bold uppercase tracking-wider">Luxury Villa</span>
+              <h3 class="text-base font-bold text-primary mt-1 mb-1 serif"><a href="property-details.html" class="hover:text-accent transition-colors">Riverfront Signature Villa</a></h3>
+              <p class="text-text-secondary text-xs flex items-center gap-1 mb-4"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-accent"></i>Piplod River Road, Surat</p>
+              <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                <div class="flex items-center gap-3 text-xs text-gray-500">
+                  <span class="flex items-center gap-1"><i data-lucide="bed-double" class="h-3.5 w-3.5 text-accent"></i>5 BHK</span>
+                  <span class="flex items-center gap-1"><i data-lucide="bath" class="h-3.5 w-3.5 text-accent"></i>5 Bath</span>
+                  <span class="flex items-center gap-1"><i data-lucide="maximize" class="h-3.5 w-3.5 text-accent"></i>6,200 sq.ft</span>
+                </div>
+                <a href="property-details.html" class="btn-dark text-xs py-1.5 px-3">View</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-property flex-1 reveal reveal-delay-3" x-data="{ liked: false }">
+            <div class="card-img relative h-52">
+              <div class="property-img-3 w-full h-full"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="badge badge-new">For Rent</span>
+              </div>
+              <button @click="liked = !liked" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white transition-all group">
+                <i data-lucide="heart" class="h-3.5 w-3.5" :class="liked ? 'text-red-500 fill-red-500' : 'text-white group-hover:text-gray-700'"></i>
+              </button>
+              <div class="absolute bottom-4 left-4">
+                <p class="text-xl font-bold text-white serif">₹45,000<span class="text-xs font-normal text-white/70">/mo</span></p>
+              </div>
+            </div>
+            <div class="p-5">
+              <span class="text-accent text-xs font-bold uppercase tracking-wider">Apartment</span>
+              <h3 class="text-base font-bold text-primary mt-1 mb-1 serif"><a href="property-details.html" class="hover:text-accent transition-colors">Pal Crest Heights</a></h3>
+              <p class="text-text-secondary text-xs flex items-center gap-1 mb-4"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-accent"></i>Anand Mahal Road, Pal, Surat</p>
+              <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                <div class="flex items-center gap-3 text-xs text-gray-500">
+                  <span class="flex items-center gap-1"><i data-lucide="bed-double" class="h-3.5 w-3.5 text-accent"></i>3 BHK</span>
+                  <span class="flex items-center gap-1"><i data-lucide="bath" class="h-3.5 w-3.5 text-accent"></i>3 Bath</span>
+                  <span class="flex items-center gap-1"><i data-lucide="maximize" class="h-3.5 w-3.5 text-accent"></i>2,100 sq.ft</span>
+                </div>
+                <a href="property-details.html" class="btn-dark text-xs py-1.5 px-3">View</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ EXPLORE LOCALITIES ══════════════════════════ -->
+  <section class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-14 reveal">
+        <span class="section-tag">Neighbourhood Guides</span>
+        <h2 class="section-heading">Explore Surat by Locality</h2>
+        <span class="accent-line mx-auto"></span>
+        <p class="section-sub mx-auto mt-4">Every neighbourhood in Surat tells a different story. Discover which one is perfect for your lifestyle.</p>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <a href="properties.html?location=vesu" class="location-card h-72 group reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=400&q=80" alt="Vesu" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="badge badge-featured mb-2">High Demand</span>
+            <h3 class="text-white text-xl font-bold serif">Vesu</h3>
+            <p class="text-white/60 text-xs mt-1">Luxury Penthouses & Villas</p>
+            <p class="text-accent text-xs font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">Explore →</p>
+          </div>
+        </a>
+        <a href="properties.html?location=adajan" class="location-card h-72 group reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=400&q=80" alt="Adajan" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="badge badge-new mb-2">Family Hub</span>
+            <h3 class="text-white text-xl font-bold serif">Adajan</h3>
+            <p class="text-white/60 text-xs mt-1">Gated Societies & Bungalows</p>
+            <p class="text-accent text-xs font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">Explore →</p>
+          </div>
+        </a>
+        <a href="properties.html?location=pal" class="location-card h-72 group reveal reveal-delay-3">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=400&q=80" alt="Pal" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="badge badge-sale mb-2">Rapid Growth</span>
+            <h3 class="text-white text-xl font-bold serif">Pal</h3>
+            <p class="text-white/60 text-xs mt-1">Premium Apartments</p>
+            <p class="text-accent text-xs font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">Explore →</p>
+          </div>
+        </a>
+        <a href="properties.html?location=dumas" class="location-card h-72 group reveal reveal-delay-4">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80" alt="Dumas Road" class="absolute inset-0 w-full h-full object-cover">
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+          <div class="absolute bottom-0 left-0 p-6">
+            <span class="badge badge-luxury mb-2">Exclusive</span>
+            <h3 class="text-white text-xl font-bold serif">Dumas Road</h3>
+            <p class="text-white/60 text-xs mt-1">Exclusive Villas & Estates</p>
+            <p class="text-accent text-xs font-semibold mt-2 opacity-0 group-hover:opacity-100 transition-all translate-y-2 group-hover:translate-y-0">Explore →</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="text-center mt-8 reveal">
+        <a href="properties.html" class="btn-outline-accent">
+          Explore All Neighbourhoods
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ WHY CHOOSE US ══════════════════════════ -->
+  <section class="py-24 bg-primary text-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="reveal-left">
+          <span class="section-tag text-accent">Our Commitment</span>
+          <h2 class="section-heading text-white mb-4">Why Discerning Buyers Choose SuratHomes</h2>
+          <span class="accent-line"></span>
+          <p class="text-white/55 text-base leading-relaxed mt-6 mb-10">We combine deep local market knowledge with a premium, client-first approach to deliver property experiences that exceed expectations every time.</p>
+          <div class="flex flex-wrap gap-6 mb-10">
+            <div class="text-center">
+              <p class="text-3xl font-bold serif text-accent">8+</p>
+              <p class="text-white/50 text-xs uppercase tracking-wider mt-1">Years Experience</p>
+            </div>
+            <div class="w-px h-12 bg-white/10 self-center"></div>
+            <div class="text-center">
+              <p class="text-3xl font-bold serif text-accent">4.9★</p>
+              <p class="text-white/50 text-xs uppercase tracking-wider mt-1">Client Rating</p>
+            </div>
+            <div class="w-px h-12 bg-white/10 self-center"></div>
+            <div class="text-center">
+              <p class="text-3xl font-bold serif text-accent">98%</p>
+              <p class="text-white/50 text-xs uppercase tracking-wider mt-1">Satisfaction Rate</p>
+            </div>
+          </div>
+          <a href="about.html" class="btn-primary">Discover Our Story</a>
+        </div>
+        <div class="grid grid-cols-2 gap-5 reveal-right">
+          <div class="glass rounded-2xl p-6 reveal-delay-1">
+            <div class="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
+              <i data-lucide="shield-check" class="h-6 w-6 text-accent"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">100% RERA Verified</h3>
+            <p class="text-white/50 text-sm leading-relaxed">Every listing cross-checked against Gujarat RERA database before going live.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 reveal-delay-2">
+            <div class="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
+              <i data-lucide="users" class="h-6 w-6 text-accent"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Dedicated Advisor</h3>
+            <p class="text-white/50 text-sm leading-relaxed">Personal property expert assigned from shortlist to handover.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 reveal-delay-3">
+            <div class="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
+              <i data-lucide="video" class="h-6 w-6 text-accent"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Virtual Tours</h3>
+            <p class="text-white/50 text-sm leading-relaxed">360° property walkthroughs for NRIs and remote investors.</p>
+          </div>
+          <div class="glass rounded-2xl p-6 reveal-delay-4">
+            <div class="w-12 h-12 rounded-xl bg-accent/15 flex items-center justify-center mb-5">
+              <i data-lucide="map-pin" class="h-6 w-6 text-accent"></i>
+            </div>
+            <h3 class="text-white font-bold text-base mb-2">Local Expertise</h3>
+            <p class="text-white/50 text-sm leading-relaxed">In-depth knowledge of every micro-market across Surat's 50+ zones.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ NEW PROJECTS ══════════════════════════ -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div class="reveal">
+          <span class="section-tag">Builders & Developers</span>
+          <h2 class="section-heading">New Launch Projects</h2>
+          <span class="accent-line"></span>
+        </div>
+        <a href="projects.html" class="btn-outline-accent mt-6 md:mt-0 reveal reveal-delay-2">
+          All Projects
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card group overflow-hidden reveal reveal-delay-1">
+          <div class="relative h-52 card-img">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Sangini Solitaire" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 badge badge-featured">New Launch</span>
+            <div class="absolute top-4 right-4">
+              <span class="roi-badge"><i data-lucide="trending-up" class="h-3 w-3"></i>8.5% ROI</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-primary text-lg serif mb-1">Sangini Solitaire</h3>
+            <p class="text-text-secondary text-xs flex items-center gap-1 mb-3"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-accent"></i>Vesu, Surat</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">3 & 4 BHK residences with VRV A/C, podium deck, and 30+ lifestyle amenities by Sangini Group.</p>
+            <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+              <div>
+                <p class="font-bold text-primary serif text-lg">₹1.8 Cr+</p>
+                <p class="text-xs text-text-secondary">Possession: Dec 2026</p>
+              </div>
+              <a href="contact.html" class="btn-dark py-2 px-4 text-xs">Get Brochure</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card group overflow-hidden reveal reveal-delay-2">
+          <div class="relative h-52 card-img">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Happy Elegance" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 badge" style="background:#F59E0B;color:white">Under Construction</span>
+            <div class="absolute top-4 right-4">
+              <span class="roi-badge"><i data-lucide="trending-up" class="h-3 w-3"></i>7.2% ROI</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-primary text-lg serif mb-1">Happy Elegance</h3>
+            <p class="text-text-secondary text-xs flex items-center gap-1 mb-3"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-accent"></i>Pal, Surat</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">35+ amenities including rooftop lounge, padel court, EV charging, and concierge services by Happy Home Group.</p>
+            <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+              <div>
+                <p class="font-bold text-primary serif text-lg">₹1.2 Cr+</p>
+                <p class="text-xs text-text-secondary">Possession: Mar 2027</p>
+              </div>
+              <a href="contact.html" class="btn-dark py-2 px-4 text-xs">Get Brochure</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card group overflow-hidden reveal reveal-delay-3">
+          <div class="relative h-52 card-img">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Avadh Palacio" class="w-full h-full object-cover">
+            <span class="absolute top-4 left-4 badge badge-new">Ready to Move</span>
+            <div class="absolute top-4 right-4">
+              <span class="roi-badge"><i data-lucide="trending-up" class="h-3 w-3"></i>9.1% ROI</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="font-bold text-primary text-lg serif mb-1">Avadh Palacio</h3>
+            <p class="text-text-secondary text-xs flex items-center gap-1 mb-3"><i data-lucide="map-pin" class="h-3.5 w-3.5 text-accent"></i>Piplod, Surat</p>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">OC ready 4 BHK with Italian marble, imported fixtures, and immediate possession. By Avadh Group.</p>
+            <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+              <div>
+                <p class="font-bold text-primary serif text-lg">₹2.4 Cr+</p>
+                <p class="text-xs text-success font-semibold">● Immediate Possession</p>
+              </div>
+              <a href="contact.html" class="btn-dark py-2 px-4 text-xs">Book Visit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ INVESTMENT OPPORTUNITIES ══════════════════════════ -->
+  <section class="py-24 invest-bg">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-14 reveal">
+        <span class="section-tag">Smart Money Moves</span>
+        <h2 class="section-heading">Invest in Surat's Growth Story</h2>
+        <span class="accent-line mx-auto"></span>
+        <p class="section-sub mx-auto mt-4">Surat's GDP growth consistently outpaces the national average. Lock in your position before prices rise further.</p>
+      </div>
+
+      <!-- Investment Stats Banner -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-14 reveal">
+        <div class="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
+          <p class="text-3xl font-bold serif text-primary">18%</p>
+          <p class="text-text-secondary text-xs uppercase tracking-wider font-semibold mt-1">Avg YoY Appreciation</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
+          <p class="text-3xl font-bold serif text-primary">₹8,200</p>
+          <p class="text-text-secondary text-xs uppercase tracking-wider font-semibold mt-1">Avg sq.ft in Vesu</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
+          <p class="text-3xl font-bold serif text-primary">4–9%</p>
+          <p class="text-text-secondary text-xs uppercase tracking-wider font-semibold mt-1">Annual Rental Yield</p>
+        </div>
+        <div class="bg-white rounded-xl p-5 text-center border border-gray-100 shadow-sm">
+          <p class="text-3xl font-bold serif text-primary">#3</p>
+          <p class="text-text-secondary text-xs uppercase tracking-wider font-semibold mt-1">Fastest Growing City</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="investment-card reveal reveal-delay-1">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #0F172A, #1E293B)">
+              <i data-lucide="building" class="h-6 w-6 text-accent"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary serif text-lg">Residential Apartments</h3>
+              <span class="roi-badge mt-1"><i data-lucide="trending-up" class="h-3 w-3"></i>4–6% Rental Yield</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">Premium 2–4 BHK apartments in Vesu, Pal, and Adajan offer steady rental income and excellent long-term capital appreciation.</p>
+          <div class="space-y-1">
+            <div class="investment-metric">
+              <span class="investment-metric-label">Average Ticket Size</span>
+              <span class="investment-metric-value">₹80L – ₹2.5 Cr</span>
+              <span class="investment-metric-sub">↑ 18% appreciation in 2 years</span>
+            </div>
+            <div class="investment-metric">
+              <span class="investment-metric-label">Best Locations</span>
+              <span class="investment-metric-value" style="font-size: 16px; font-family: Inter, sans-serif">Vesu · Pal · Adajan</span>
+            </div>
+          </div>
+          <a href="properties.html?type=apartment" class="btn-outline-accent w-full justify-center mt-6 text-xs">Explore Apartments</a>
+        </div>
+
+        <!-- Card 2 — Featured -->
+        <div class="investment-card reveal reveal-delay-2" style="background: linear-gradient(145deg, #0F172A, #1E293B); border-color: rgba(200,169,106,0.25)">
+          <div class="absolute top-0 left-0 right-0 h-0.5 rounded-t-xl" style="background: linear-gradient(90deg, #E2C98A, #C8A96A, #A88A4A)"></div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="badge badge-featured">Most Popular</span>
+          </div>
+          <div class="flex items-center gap-4 mb-6 mt-3">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: rgba(200,169,106,0.15); border: 1px solid rgba(200,169,106,0.3)">
+              <i data-lucide="home" class="h-6 w-6 text-accent"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white serif text-lg">Luxury Villas</h3>
+              <span class="roi-badge mt-1"><i data-lucide="trending-up" class="h-3 w-3"></i>6–9% Rental Yield</span>
+            </div>
+          </div>
+          <p class="text-white/55 text-sm leading-relaxed mb-6">High-value villas along Dumas Road and Piplod deliver premium rental income from corporate expats and affluent tenants.</p>
+          <div class="space-y-1">
+            <div class="investment-metric" style="border-color: rgba(255,255,255,0.08)">
+              <span class="investment-metric-label" style="color: rgba(255,255,255,0.45)">Average Ticket Size</span>
+              <span class="investment-metric-value" style="color: white">₹3 Cr – ₹12 Cr</span>
+              <span class="investment-metric-sub">↑ 24% appreciation in 2 years</span>
+            </div>
+            <div class="investment-metric" style="border-color: rgba(255,255,255,0.08)">
+              <span class="investment-metric-label" style="color: rgba(255,255,255,0.45)">Best Locations</span>
+              <span style="font-family: Inter, sans-serif; font-size: 16px; font-weight: 600; color: white">Dumas Road · Piplod</span>
+            </div>
+          </div>
+          <a href="properties.html?type=villa" class="btn-primary w-full justify-center mt-6 text-xs">Explore Villas</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="investment-card reveal reveal-delay-3">
+          <div class="flex items-center gap-4 mb-6">
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #0F172A, #1E293B)">
+              <i data-lucide="briefcase" class="h-6 w-6 text-accent"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-primary serif text-lg">Commercial Spaces</h3>
+              <span class="roi-badge mt-1"><i data-lucide="trending-up" class="h-3 w-3"></i>7–10% Rental Yield</span>
+            </div>
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed mb-6">With Surat being India's fastest-growing commercial hub, retail and office spaces near Ring Road command top-tier rents.</p>
+          <div class="space-y-1">
+            <div class="investment-metric">
+              <span class="investment-metric-label">Average Ticket Size</span>
+              <span class="investment-metric-value">₹1.5 Cr – ₹8 Cr</span>
+              <span class="investment-metric-sub">↑ 21% appreciation in 2 years</span>
+            </div>
+            <div class="investment-metric">
+              <span class="investment-metric-label">Best Locations</span>
+              <span class="investment-metric-value" style="font-size: 16px; font-family: Inter, sans-serif">Canal Road · Ring Road</span>
+            </div>
+          </div>
+          <a href="properties.html?type=commercial" class="btn-outline-accent w-full justify-center mt-6 text-xs">Explore Commercial</a>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center reveal">
+        <a href="contact.html" class="btn-primary">
+          <i data-lucide="phone" class="h-4 w-4"></i>
+          Talk to an Investment Advisor
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ TRUSTED BUILDERS ══════════════════════════ -->
+  <section class="py-20 bg-white border-y border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-12 reveal">
+        <span class="section-tag">Our Partners</span>
+        <h2 class="section-heading">Trusted Developer Partners</h2>
+        <span class="accent-line mx-auto"></span>
+        <p class="section-sub mx-auto mt-3">We work exclusively with Surat's most reputable and RERA-registered builders.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="builder-card reveal reveal-delay-1">
+          <div class="builder-icon">HH</div>
+          <span class="builder-name">Happy Home Group</span>
+          <span class="builder-projects">32 Projects</span>
+        </div>
+        <div class="builder-card reveal reveal-delay-2">
+          <div class="builder-icon">SG</div>
+          <span class="builder-name">Sangini Group</span>
+          <span class="builder-projects">28 Projects</span>
+        </div>
+        <div class="builder-card reveal reveal-delay-3">
+          <div class="builder-icon">RR</div>
+          <span class="builder-name">Rajhans Realty</span>
+          <span class="builder-projects">19 Projects</span>
+        </div>
+        <div class="builder-card reveal reveal-delay-4">
+          <div class="builder-icon">GG</div>
+          <span class="builder-name">Green Group</span>
+          <span class="builder-projects">24 Projects</span>
+        </div>
+        <div class="builder-card reveal reveal-delay-5">
+          <div class="builder-icon">AG</div>
+          <span class="builder-name">Avadh Group</span>
+          <span class="builder-projects">17 Projects</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ TESTIMONIALS ══════════════════════════ -->
+  <section class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-5xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-14 reveal">
+        <span class="section-tag">Client Voices</span>
+        <h2 class="section-heading">Stories of Successful Moves</h2>
+        <span class="accent-line mx-auto"></span>
+      </div>
+
+      <div class="relative reveal">
+        <template x-for="(t, i) in testimonials" :key="i">
+          <div x-show="currentTestimonial === i"
+               x-transition:enter="transition ease-out duration-400"
+               x-transition:enter-start="opacity-0 translate-x-4"
+               x-transition:enter-end="opacity-100 translate-x-0"
+               x-transition:leave="transition ease-in duration-250"
+               x-transition:leave-start="opacity-100"
+               x-transition:leave-end="opacity-0"
+               class="testimonial-card">
+            <div class="testimonial-quote-bg">"</div>
+            <div class="flex flex-col md:flex-row gap-8 items-start relative z-10">
+              <div class="flex-shrink-0">
+                <img :src="t.avatar" :alt="t.name" class="w-20 h-20 rounded-full object-cover border-4 border-accent/20 shadow-lg">
+              </div>
+              <div class="flex-1">
+                <div class="flex gap-1 mb-4">
+                  <template x-for="s in 5">
+                    <i data-lucide="star" class="h-4 w-4 text-accent fill-accent"></i>
+                  </template>
+                </div>
+                <p class="text-gray-700 text-base leading-relaxed mb-6 italic text-lg" x-text="t.text"></p>
+                <div class="flex items-center gap-4">
+                  <div class="w-10 h-px bg-accent"></div>
+                  <div>
+                    <p class="font-bold text-primary serif text-lg" x-text="t.name"></p>
+                    <p class="text-text-secondary text-sm font-medium" x-text="t.role"></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </template>
+
+        <!-- Navigation -->
+        <div class="flex justify-center items-center gap-4 mt-8">
+          <button @click="currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length" class="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-accent hover:text-accent hover:bg-accent/5 transition-all">
+            <i data-lucide="chevron-left" class="h-5 w-5"></i>
+          </button>
+          <div class="flex gap-2">
+            <template x-for="(t, i) in testimonials" :key="i">
+              <button @click="currentTestimonial = i" :class="currentTestimonial === i ? 'bg-accent w-8' : 'bg-gray-300 w-3'" class="h-3 rounded-full transition-all duration-300"></button>
+            </template>
+          </div>
+          <button @click="currentTestimonial = (currentTestimonial + 1) % testimonials.length" class="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-accent hover:text-accent hover:bg-accent/5 transition-all">
+            <i data-lucide="chevron-right" class="h-5 w-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ MARKET INSIGHTS ══════════════════════════ -->
+  <section class="py-24 market-bg text-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-14 reveal">
+        <span class="section-tag text-accent">Data-Driven Decisions</span>
+        <h2 class="section-heading text-white">Surat Property Market Insights</h2>
+        <span class="accent-line mx-auto"></span>
+        <p class="text-white/50 text-base leading-relaxed max-w-xl mx-auto mt-4">Real-time market intelligence to help you buy, sell, or invest at the right time.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
+        <!-- Insight 1 -->
+        <div class="insight-card reveal reveal-delay-1" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08)">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+              <i data-lucide="bar-chart-2" class="h-5 w-5 text-accent"></i>
+            </div>
+            <span class="roi-badge">↑ Q2 2026</span>
+          </div>
+          <h3 class="text-white font-bold text-base mb-4">Price per Sq.ft by Zone</h3>
+          <div class="space-y-3">
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/60">Vesu</span>
+                <span class="text-white font-semibold">₹8,200</span>
+              </div>
+              <div class="price-bar-track"><div class="price-bar-fill" style="width: 92%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/60">Dumas Road</span>
+                <span class="text-white font-semibold">₹7,800</span>
+              </div>
+              <div class="price-bar-track"><div class="price-bar-fill" style="width: 87%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/60">Adajan</span>
+                <span class="text-white font-semibold">₹6,500</span>
+              </div>
+              <div class="price-bar-track"><div class="price-bar-fill" style="width: 73%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/60">Pal</span>
+                <span class="text-white font-semibold">₹5,800</span>
+              </div>
+              <div class="price-bar-track"><div class="price-bar-fill" style="width: 65%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs mb-1">
+                <span class="text-white/60">Althan</span>
+                <span class="text-white font-semibold">₹4,900</span>
+              </div>
+              <div class="price-bar-track"><div class="price-bar-fill" style="width: 55%"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insight 2 -->
+        <div class="insight-card reveal reveal-delay-2" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08)">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+              <i data-lucide="trending-up" class="h-5 w-5 text-accent"></i>
+            </div>
+            <span class="roi-badge">5-Year Data</span>
+          </div>
+          <h3 class="text-white font-bold text-base mb-4">Year-on-Year Appreciation</h3>
+          <div class="space-y-4">
+            <div class="flex items-end gap-2 h-28">
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <span class="text-white/50 text-xs">10%</span>
+                <div class="w-full rounded-t-md bg-accent/30" style="height: 40%"></div>
+                <span class="text-white/40 text-xs">2022</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <span class="text-white/50 text-xs">13%</span>
+                <div class="w-full rounded-t-md bg-accent/45" style="height: 55%"></div>
+                <span class="text-white/40 text-xs">2023</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <span class="text-white/50 text-xs">15%</span>
+                <div class="w-full rounded-t-md bg-accent/60" style="height: 65%"></div>
+                <span class="text-white/40 text-xs">2024</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <span class="text-white/50 text-xs">17%</span>
+                <div class="w-full rounded-t-md bg-accent/80" style="height: 75%"></div>
+                <span class="text-white/40 text-xs">2025</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1">
+                <span class="text-accent text-xs font-bold">18%</span>
+                <div class="w-full rounded-t-md bg-accent" style="height: 88%"></div>
+                <span class="text-accent text-xs font-bold">2026</span>
+              </div>
+            </div>
+            <p class="text-white/50 text-xs text-center">Surat residential property average appreciation</p>
+          </div>
+          <div class="mt-4 p-3 rounded-lg" style="background: rgba(200,169,106,0.1); border: 1px solid rgba(200,169,106,0.2)">
+            <p class="text-accent text-sm font-semibold">5-Year CAGR: ~14.6%</p>
+            <p class="text-white/50 text-xs mt-0.5">Outperforming national average of 9.2%</p>
+          </div>
+        </div>
+
+        <!-- Insight 3 -->
+        <div class="insight-card reveal reveal-delay-3" style="background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08)">
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center">
+              <i data-lucide="percent" class="h-5 w-5 text-accent"></i>
+            </div>
+            <span class="roi-badge">Best in Gujarat</span>
+          </div>
+          <h3 class="text-white font-bold text-base mb-4">Rental Yield by Type</h3>
+          <div class="space-y-4">
+            <div class="p-3 rounded-xl" style="background: rgba(200,169,106,0.08); border: 1px solid rgba(200,169,106,0.15)">
+              <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="briefcase" class="h-4 w-4 text-accent"></i>
+                  <span class="text-white/70 text-sm">Commercial</span>
+                </div>
+                <span class="text-accent font-bold text-lg serif">7–10%</span>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08)">
+              <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="home" class="h-4 w-4 text-accent"></i>
+                  <span class="text-white/70 text-sm">Luxury Villas</span>
+                </div>
+                <span class="text-white font-bold text-lg serif">6–9%</span>
+              </div>
+            </div>
+            <div class="p-3 rounded-xl" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08)">
+              <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                  <i data-lucide="building-2" class="h-4 w-4 text-accent"></i>
+                  <span class="text-white/70 text-sm">Apartments</span>
+                </div>
+                <span class="text-white font-bold text-lg serif">4–6%</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5 text-center">
+            <p class="text-white/40 text-xs">Data sourced from Gujarat RERA & Knight Frank India Report 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center reveal">
+        <a href="contact.html" class="btn-primary">
+          <i data-lucide="file-text" class="h-4 w-4"></i>
+          Get Full Market Report
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ LATEST NEWS ══════════════════════════ -->
+  <section class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+        <div class="reveal">
+          <span class="section-tag">Property Intelligence</span>
+          <h2 class="section-heading">Latest Property News</h2>
+          <span class="accent-line"></span>
+        </div>
+        <a href="faq.html" class="btn-outline-accent mt-6 md:mt-0 reveal reveal-delay-2">
+          View All Articles
+          <i data-lucide="arrow-right" class="h-4 w-4"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="news-card reveal reveal-delay-1">
+          <div class="news-img">
+            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Surat Ring Road Property">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-accent bg-accent/8 px-2.5 py-1 rounded-full">Market News</span>
+              <span class="text-xs text-text-secondary">Jun 28, 2026</span>
+            </div>
+            <h3 class="font-bold text-primary serif text-lg mb-2 hover:text-accent transition-colors cursor-pointer leading-snug">Surat Ring Road Phase II Drives 22% Property Value Surge in Pal</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">Infrastructure development along the new expressway corridor is reshaping residential demand. Developers are fast-tracking launches...</p>
+            <a href="#" class="text-accent text-sm font-bold hover:text-accent-dark transition-colors flex items-center gap-1">Read Full Article <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a>
+          </div>
+        </div>
+
+        <div class="news-card reveal reveal-delay-2">
+          <div class="news-img">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80" alt="NRI Investment">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">NRI Guide</span>
+              <span class="text-xs text-text-secondary">Jun 20, 2026</span>
+            </div>
+            <h3 class="font-bold text-primary serif text-lg mb-2 hover:text-accent transition-colors cursor-pointer leading-snug">5 Tax Benefits NRIs Must Know Before Buying Property in Surat</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">From DTAA exemptions to home loan interest deductions — our legal team breaks down every advantage available for NRI buyers...</p>
+            <a href="#" class="text-accent text-sm font-bold hover:text-accent-dark transition-colors flex items-center gap-1">Read Full Article <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a>
+          </div>
+        </div>
+
+        <div class="news-card reveal reveal-delay-3">
+          <div class="news-img">
+            <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Luxury Interior">
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Luxury Living</span>
+              <span class="text-xs text-text-secondary">Jun 15, 2026</span>
+            </div>
+            <h3 class="font-bold text-primary serif text-lg mb-2 hover:text-accent transition-colors cursor-pointer leading-snug">Inside Surat's Most Expensive Penthouse: A ₹12 Crore Sky Villa</h3>
+            <p class="text-text-secondary text-sm leading-relaxed mb-4">We were given exclusive access to one of Vesu's most coveted addresses — a 6,500 sq.ft sky residence with a private infinity pool...</p>
+            <a href="#" class="text-accent text-sm font-bold hover:text-accent-dark transition-colors flex items-center gap-1">Read Full Article <i data-lucide="arrow-right" class="h-3.5 w-3.5"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ CONTACT & CONSULTATION ══════════════════════════ -->
+  <section class="py-24 bg-primary relative overflow-hidden" id="consultation">
+    <!-- Background texture -->
+    <div class="cta-glow" style="top: -100px; left: -100px;"></div>
+    <div class="cta-glow" style="bottom: -100px; right: -100px;"></div>
+    <div class="absolute inset-0 opacity-5">
+      <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=40" alt="" class="w-full h-full object-cover">
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Left: Trust + Info -->
+        <div class="reveal-left">
+          <span class="section-tag text-accent">Free Consultation</span>
+          <h2 class="text-white section-heading mb-4">Let's Find Your<br>Perfect Property</h2>
+          <span class="accent-line"></span>
+          <p class="text-white/55 text-base leading-relaxed mt-6 mb-10">Our senior property advisors are ready to guide you — whether you're buying your first home or growing your portfolio. Zero pressure, complete transparency.</p>
+
+          <div class="space-y-4 mb-10">
+            <div class="trust-badge">
+              <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="shield-check" class="h-5 w-5 text-accent"></i>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">100% Confidential</p>
+                <p class="text-white/45 text-xs mt-0.5">Your data is never shared with third parties</p>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="clock" class="h-5 w-5 text-accent"></i>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Response within 2 Hours</p>
+                <p class="text-white/45 text-xs mt-0.5">Mon–Sat, 9 AM to 8 PM IST</p>
+              </div>
+            </div>
+            <div class="trust-badge">
+              <div class="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="users" class="h-5 w-5 text-accent"></i>
+              </div>
+              <div>
+                <p class="text-white font-semibold text-sm">Dedicated Senior Advisor</p>
+                <p class="text-white/45 text-xs mt-0.5">Not a call centre — a real expert assigned to you</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-3 text-white/60 text-sm">
+              <i data-lucide="phone" class="h-4 w-4 text-accent"></i>
+              <a href="tel:+912614058899" class="hover:text-accent transition-colors">+91 261 405 8899</a>
+            </div>
+            <div class="flex items-center gap-3 text-white/60 text-sm">
+              <i data-lucide="mail" class="h-4 w-4 text-accent"></i>
+              <a href="mailto:info@surathomes.com" class="hover:text-accent transition-colors">info@surathomes.com</a>
+            </div>
+            <div class="flex items-center gap-3 text-white/60 text-sm">
+              <i data-lucide="map-pin" class="h-4 w-4 text-accent"></i>
+              <span>402, Golden Icon Tower, Dumas Road, Piplod, Surat 395007</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-right">
+          <div class="glass rounded-2xl p-8">
+            <h3 class="text-white font-bold text-xl serif mb-2">Schedule a Free Consultation</h3>
+            <p class="text-white/45 text-sm mb-6">Fill in your details and we'll call you within 2 hours.</p>
+            <form action="contact.html" method="GET" class="space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Full Name *</label>
+                  <input type="text" name="name" placeholder="Rajesh Shah" class="consultation-input" required>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Phone Number *</label>
+                  <input type="tel" name="phone" placeholder="+91 98765 43210" class="consultation-input" required>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Email Address</label>
+                <input type="email" name="email" placeholder="you@example.com" class="consultation-input">
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Looking For</label>
+                  <select name="intent" class="consultation-input">
+                    <option value="">Select purpose</option>
+                    <option>Buy a Home</option>
+                    <option>Rent a Property</option>
+                    <option>Invest in Real Estate</option>
+                    <option>Sell My Property</option>
+                    <option>NRI Services</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Budget Range</label>
+                  <select name="budget" class="consultation-input">
+                    <option value="">Select budget</option>
+                    <option>Under ₹50 Lakhs</option>
+                    <option>₹50L – ₹1 Crore</option>
+                    <option>₹1 Cr – ₹2.5 Cr</option>
+                    <option>₹2.5 Cr – ₹5 Cr</option>
+                    <option>₹5 Cr – ₹10 Cr</option>
+                    <option>Above ₹10 Crore</option>
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-white/50 uppercase tracking-wider mb-2">Message (Optional)</label>
+                <textarea name="message" rows="3" placeholder="Tell us about your ideal property, preferred locality, timeline, or any specific requirements..." class="consultation-input resize-none"></textarea>
+              </div>
+              <button type="submit" class="btn-primary w-full justify-center py-4 text-sm">
+                <i data-lucide="send" class="h-4 w-4"></i>
+                Request Free Consultation
+              </button>
+              <p class="text-white/30 text-xs text-center">By submitting, you agree to our privacy policy. No spam, ever.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ CTA SECTION ══════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="relative overflow-hidden rounded-3xl" style="background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)">
+        <div class="absolute inset-0 opacity-10">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=40" alt="" class="w-full h-full object-cover">
+        </div>
+        <div class="cta-glow" style="top: -100px; right: 10%"></div>
+        <div class="relative z-10 px-8 py-16 md:px-16 flex flex-col md:flex-row items-center justify-between gap-8 reveal">
+          <div class="text-center md:text-left">
+            <span class="section-tag text-accent">Ready to Begin?</span>
+            <h2 class="text-white text-3xl md:text-4xl font-bold serif mt-2 mb-3">Your Dream Property<br>in Surat Awaits</h2>
+            <p class="text-white/50 text-base">Expert guidance tailored to your goals. No pressure, no obligations.</p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-4 flex-shrink-0">
+            <a href="contact.html" class="btn-primary">
+              <i data-lucide="calendar" class="h-4 w-4"></i>
+              Schedule Consultation
+            </a>
+            <a href="properties.html" class="btn-ghost">
+              Browse Properties
+              <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+  <footer class="bg-secondary text-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+        <div class="md:col-span-1">
+          <div class="flex items-center gap-2.5 mb-5">
+            <div class="w-9 h-9 bg-accent rounded-lg flex items-center justify-center flex-shrink-0" style="box-shadow: 0 4px 12px rgba(200,169,106,0.35)">
+              <i data-lucide="home" class="h-4 w-4 text-primary"></i>
+            </div>
+            <span class="text-xl font-bold">Surat<span class="text-accent">Homes</span></span>
+          </div>
+          <p class="text-white/40 text-sm leading-relaxed mb-6">Surat's premium real estate platform connecting buyers, builders, and investors since 2018.</p>
+          <div class="flex gap-3">
+            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/8 hover:bg-accent/20 flex items-center justify-center border border-white/10 hover:border-accent/40 transition-all">
+              <i data-lucide="instagram" class="h-4 w-4 text-white/50 hover:text-accent"></i>
+            </a>
+            <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-lg bg-white/8 hover:bg-accent/20 flex items-center justify-center border border-white/10 hover:border-accent/40 transition-all">
+              <i data-lucide="facebook" class="h-4 w-4 text-white/50 hover:text-accent"></i>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-white/8 hover:bg-accent/20 flex items-center justify-center border border-white/10 hover:border-accent/40 transition-all">
+              <i data-lucide="linkedin" class="h-4 w-4 text-white/50 hover:text-accent"></i>
+            </a>
+            <a href="https://wa.me/912614058899" aria-label="WhatsApp" class="w-9 h-9 rounded-lg bg-white/8 hover:bg-green-500/20 flex items-center justify-center border border-white/10 hover:border-green-400/40 transition-all">
+              <i data-lucide="message-circle" class="h-4 w-4 text-white/50 hover:text-green-400"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-[0.12em] mb-5">Properties</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="properties.html" class="text-white/40 hover:text-accent transition-colors">All Listings</a></li>
+            <li><a href="properties.html?type=villa" class="text-white/40 hover:text-accent transition-colors">Luxury Villas</a></li>
+            <li><a href="properties.html?type=apartment" class="text-white/40 hover:text-accent transition-colors">Apartments</a></li>
+            <li><a href="properties.html?type=penthouse" class="text-white/40 hover:text-accent transition-colors">Penthouses</a></li>
+            <li><a href="properties.html?type=commercial" class="text-white/40 hover:text-accent transition-colors">Commercial</a></li>
+            <li><a href="projects.html" class="text-white/40 hover:text-accent transition-colors">New Projects</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-[0.12em] mb-5">Resources</h4>
+          <ul class="space-y-3 text-sm">
+            <li><a href="buy.html" class="text-white/40 hover:text-accent transition-colors">Buyer's Guide</a></li>
+            <li><a href="rent.html" class="text-white/40 hover:text-accent transition-colors">Rental Guide</a></li>
+            <li><a href="faq.html" class="text-white/40 hover:text-accent transition-colors">FAQs</a></li>
+            <li><a href="agents.html" class="text-white/40 hover:text-accent transition-colors">Our Agents</a></li>
+            <li><a href="about.html" class="text-white/40 hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="contact.html" class="text-white/40 hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-bold text-sm uppercase tracking-[0.12em] mb-5">Contact</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3 text-white/40">
+              <i data-lucide="map-pin" class="h-4 w-4 text-accent flex-shrink-0 mt-0.5"></i>
+              402, Golden Icon Tower, Dumas Road, Piplod, Surat 395007
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="phone" class="h-4 w-4 text-accent flex-shrink-0"></i>
+              <a href="tel:+912614058899" class="text-white/40 hover:text-accent transition-colors">+91 261 405 8899</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="mail" class="h-4 w-4 text-accent flex-shrink-0"></i>
+              <a href="mailto:info@surathomes.com" class="text-white/40 hover:text-accent transition-colors">info@surathomes.com</a>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="clock" class="h-4 w-4 text-accent flex-shrink-0"></i>
+              <span class="text-white/40">Mon–Sat: 9 AM – 8 PM</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-separator mb-8"></div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/25">
+        <p>© 2026 SuratHomes. All rights reserved. RERA Registration: PR/GJ/SURAT/395007</p>
+        <div class="flex gap-6">
+          <a href="faq.html" class="hover:text-accent transition-colors">Privacy Policy</a>
+          <a href="faq.html" class="hover:text-accent transition-colors">Terms of Service</a>
+          <a href="faq.html" class="hover:text-accent transition-colors">RERA Disclosures</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button id="back-to-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="back-to-top" aria-label="Back to top">
+    <i data-lucide="arrow-up" class="h-5 w-5"></i>
+  </button>
+
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/912614058899?text=Hi%2C%20I%27m%20interested%20in%20a%20property%20in%20Surat."
+     target="_blank"
+     class="fixed bottom-32 right-8 z-50 w-12 h-12 rounded-full flex items-center justify-center shadow-lg transition-all hover:scale-110 hover:shadow-xl"
+     style="background: #25D366; box-shadow: 0 4px 20px rgba(37,211,102,0.4)"
+     aria-label="Chat on WhatsApp">
+    <i data-lucide="message-circle" class="h-5 w-5 text-white"></i>
+  </a>
+
+  <script>
+    // Init icons
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      // ── Intersection Observer for scroll reveals ──────────────
+      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+      revealElements.forEach(el => revealObserver.observe(el));
+
+      // ── Animated counters ─────────────────────────────────────
+      const counterEls = document.querySelectorAll('.counter-value');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            let start = 0;
+            const duration = 2000;
+            const step = target / (duration / 16);
+
+            const timer = setInterval(() => {
+              start = Math.min(start + step, target);
+              el.textContent = Math.floor(start).toLocaleString('en-IN') + suffix;
+              if (start >= target) clearInterval(timer);
+            }, 16);
+
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+
+      counterEls.forEach(el => counterObserver.observe(el));
+
+      // ── Back-to-top visibility ────────────────────────────────
+      const backBtn = document.getElementById('back-to-top-btn');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          backBtn.classList.add('visible');
+        } else {
+          backBtn.classList.remove('visible');
+        }
+      }, { passive: true });
+
+      // ── Auto-advance testimonials ─────────────────────────────
+      let autoTestimonial;
+      function startAutoTestimonial() {
+        autoTestimonial = setInterval(() => {
+          const alpineEl = document.querySelector('[x-data]');
+          if (alpineEl && alpineEl._x_dataStack) {
+            const data = alpineEl._x_dataStack[0];
+            if (data && data.testimonials) {
+              data.currentTestimonial = (data.currentTestimonial + 1) % data.testimonials.length;
+            }
+          }
+        }, 6000);
+      }
+      startAutoTestimonial();
+
+      // Re-init icons after Alpine processes (small delay for dynamic elements)
+      setTimeout(() => lucide.createIcons(), 300);
+    });
+  </script>
+</body>
+</html>
